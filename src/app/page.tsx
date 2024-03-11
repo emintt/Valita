@@ -79,14 +79,15 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-4">
       <h1 className="text-4xl font-bold">Home</h1>
-      <section>
+      <section>  
         <ul>
-          <li className='border'>
-            <h3>{postArray[1].company_name}</h3>
-            <h4>{postArray[1].title}</h4>
-            <p>{postArray[1].content}</p>
+        {postArray.map((post, index) => (
+          <li key={index} className=' border-slate-950 p-2 mb-4'>
+            <h3>{post.company_name}</h3>
+            <h4>{post.title}</h4>
+            <p>{post.content}</p>
           </li>
-          
+        ))}
         </ul>
       </section>
     </main>
