@@ -1,0 +1,7 @@
+DB_HOST=localhost
+DB_USER=user
+DB_PASS=12345
+DB_NAME=Valita
+# UPLOAD_URL=http://localhost:3002/uploads/
+# UPLOAD_SERVER=http://localhost:3002/upload/api/v1
+# JWT_SECRET=your_secret
