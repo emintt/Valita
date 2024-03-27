@@ -9,8 +9,6 @@ const fetchAllPost = async (
     const sql = 
       `SELECT *
       FROM Posts`;
-
-    console.log('sql', sql);
     const [rows] = await promisePool.execute<RowDataPacket[] & Post[]>(
       sql
     );

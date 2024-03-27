@@ -10,6 +10,15 @@ type Post = {
   created_at: string;
 };
 
+type Company = {
+  company_id: number;
+  company_name: string;
+}
+
+type PostWithCompanyName = Post & Pick<Company, 'company_name'>
+
 export type {
-  Post
+  Post,
+  PostWithCompanyName,
+  Company
 };
