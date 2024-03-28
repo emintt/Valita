@@ -2,6 +2,8 @@ import { fetchCompanyById } from "@/models/companyModels";
 import { fetchAllPost } from "@/models/postModels";
 import { Post } from "@/types/DBTypes";
 
+export const revalidate = 0;
+
 const PostList = async () => {
   const postList = await fetchAllPost();
   if (!postList) {
