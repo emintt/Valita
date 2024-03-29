@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import {Inter} from 'next/font/google';
 import './globals.css';
+import Link from 'next/link';
 
 const inter = Inter({subsets: ['latin']});
 
@@ -16,7 +17,41 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+          <div className="flex items-center flex-shrink-0 text-white mr-6">
+            <Link href="/">
+              <span className="font-semibold text-xl tracking-tight">
+                Valita
+              </span>
+            </Link>
+          </div>
+          <div className="lg:flex lg:items-center lg:w-auto justify-end">
+            <ul className="flex">
+              <li className="mr-4">
+                <Link
+                  href="/create"
+                  className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+                >
+                  Luo julkaisu
+                </Link>
+              </li>
+                
+              <li className="mr-4">
+                <Link
+                  href="/login"
+                  className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+                >
+                  Kijaudu sisään
+                </Link>
+              </li>
+            </ul>
+          </div>  
+        </nav>
+        <main className="flex min-h-screen flex-col items-center p-4>
+          {children}
+        </main>
+      </body>
     </html>
   );
 }

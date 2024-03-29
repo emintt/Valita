@@ -78,11 +78,11 @@ export default function Home() {
     },
   ];
   return (
-    <main className="flex min-h-screen flex-col items-center p-4">
+    <>
       <h1 className="text-4xl font-bold">Home</h1>
       <section>
         <PostList />
       </section>
-    </main>
+    </>
   );
 }
