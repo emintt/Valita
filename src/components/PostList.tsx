@@ -27,7 +27,7 @@ const PostList = async () => {
           postListWithCompanyName.map((post, index) => (
             <li key={index} className=" border-slate-950 p-2 mb-4">
               <h3>{post.company_name}</h3>
-              {/* <p>{new Date(post.created_at).toLocaleDateString('fi-FI')}</p> */}
+              <p>{new Date(post.created_at).toLocaleDateString('fi-FI')}</p>
               <h4>{post.title}</h4>
               <p>{post.content}</p>
             </li>
