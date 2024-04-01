@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const NavBar = ({font} : {font: string}) => {
   return (
-    <nav className="flex items-center justify-end flex-wrap bg-white p-4 tracking-wider">
+    <nav className="flex items-center justify-end flex-wrap bg-white py-2 px-4 tracking-wider">
       <div className="flex items-center flex-shrink-0 text-white mr-auto">
         <Link href="/">
           <span className="font-semibold text-3xl tracking-tight text-blue-violet">
@@ -10,7 +10,7 @@ const NavBar = ({font} : {font: string}) => {
           </span>
         </Link>
       </div>
-      <div className="lg:flex lg:items-center lg:w-auto mr-10">
+      <div className="hidden lg:flex lg:items-center lg:w-auto mr-10">
         <ul className="flex">
           <li className="mr-4">
             <Link
@@ -40,7 +40,7 @@ const NavBar = ({font} : {font: string}) => {
       </div>
       <div className="lg:flex lg:items-center lg:w-auto">
         <ul className="flex">
-          <li className="mr-4">
+          <li className="lg:mr-4">
             <Link
               href="/search"
               className="block lg:inline-block lg:mt-0 text-slate-950 font-semibold p-3 hover:text-purple "
@@ -48,7 +48,7 @@ const NavBar = ({font} : {font: string}) => {
               Haku
             </Link>
           </li>
-          {/* <li className="mr-4">
+          {/* <li className="lg:mr-4">
             <Link
               href="/create"
               className="block lg:inline-block lg:mt-0 text-slate-950 font-semibold p-3 hover:text-purple"
@@ -57,7 +57,7 @@ const NavBar = ({font} : {font: string}) => {
             </Link>
           </li> */}
             
-          <li className="mr-4">
+          <li className="lg:mr-4">
             <Link
               href="/login"
               className="block lg:inline-block lg:mt-0 text-slate-950 font-semibold p-3 hover:text-purple  "
