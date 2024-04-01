@@ -3,7 +3,7 @@ import {Post} from '@/types/DBTypes';
 import {RowDataPacket} from 'mysql2';
 
 const fetchAllPost = async (): Promise<Post[] | null> => {
-  const uploadPath = process.env.UPLOAD_URL;
+  // const uploadPath = process.env.UPLOAD_URL;
   try {
     const sql = `SELECT *
       FROM Posts`;
@@ -12,6 +12,7 @@ const fetchAllPost = async (): Promise<Post[] | null> => {
     if (rows.length === 0) {
       return null;
     }
+    console.log(rows);
     return rows;
   } catch (e) {
     console.error('fetchAllPost error', (e as Error).message);
