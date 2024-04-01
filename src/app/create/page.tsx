@@ -4,6 +4,6 @@ const Page = () => {
       <h2>Luo julkaisu</h2>
     </div>
   );
-}
+};
 
 export default Page;
