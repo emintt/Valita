@@ -1,17 +1,13 @@
-import { promisePool } from "@/lib/db";
-import { Post } from "@/types/DBTypes";
-import { RowDataPacket } from "mysql2";
+import {promisePool} from '@/lib/db';
+import {Post} from '@/types/DBTypes';
+import {RowDataPacket} from 'mysql2';
 
-const fetchAllPost = async (
-): Promise<Post[] | null> => {
+const fetchAllPost = async (): Promise<Post[] | null> => {
   const uploadPath = process.env.UPLOAD_URL;
   try {
-    const sql = 
-      `SELECT *
+    const sql = `SELECT *
       FROM Posts`;
-    const [rows] = await promisePool.execute<RowDataPacket[] & Post[]>(
-      sql
-    );
+    const [rows] = await promisePool.execute<RowDataPacket[] & Post[]>(sql);
 
     if (rows.length === 0) {
       return null;
@@ -23,6 +19,4 @@ const fetchAllPost = async (
   }
 };
 
-export {
-  fetchAllPost
-};
+export {fetchAllPost};

@@ -13,12 +13,8 @@ type Post = {
 type Company = {
   company_id: number;
   company_name: string;
-}
-
-type PostWithCompanyName = Post & Pick<Company, 'company_name'>
-
-export type {
-  Post,
-  PostWithCompanyName,
-  Company
 };
+
+type PostWithCompanyName = Post & Pick<Company, 'company_name'>;
+
+export type {Post, PostWithCompanyName, Company};

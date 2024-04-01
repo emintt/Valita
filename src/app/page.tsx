@@ -2,7 +2,6 @@ import PostList from '@/components/PostList';
 import Image from 'next/image';
 
 export default function Home() {
-
   const postArray = [
     {
       post_id: 1,
@@ -13,7 +12,8 @@ export default function Home() {
       media_type: 'image/jpeg',
       company_name: 'UMH Finland',
       title: '',
-      content: 'Liian paljon kuljetuspaikkaa päivässä. Tuntuu että olen kilpailussa.',
+      content:
+        'Liian paljon kuljetuspaikkaa päivässä. Tuntuu että olen kilpailussa.',
       created_at: '2024-01-07T12:49:34.000Z',
     },
     {
@@ -49,7 +49,8 @@ export default function Home() {
       media_type: 'image/jpeg',
       company_name: 'UMH Finland',
       title: '',
-      content: 'Liian paljon kuljetuspaikkaa päivässä. Tuntuu että olen kilpailussa.',
+      content:
+        'Liian paljon kuljetuspaikkaa päivässä. Tuntuu että olen kilpailussa.',
       created_at: '2024-01-07T12:49:34.000Z',
     },
     {
