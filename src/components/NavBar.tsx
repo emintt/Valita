@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const NavBar = ({font} : {font: string}) => {
   return (
-    <nav className="flex items-center justify-end flex-wrap bg-white py-2 px-4 tracking-wider">
+    <nav className="flex items-center justify-end flex-wrap bg-white py-2 px-4 tracking-wider border-b border-gray-200">
       <div className="flex items-center flex-shrink-0 text-white mr-auto">
         <Link href="/">
           <span className="font-semibold text-3xl tracking-tight text-blue-violet">
@@ -48,14 +48,14 @@ const NavBar = ({font} : {font: string}) => {
               Haku
             </Link>
           </li>
-          {/* <li className="lg:mr-4">
+          <li className="lg:mr-4">
             <Link
               href="/create"
               className="block lg:inline-block lg:mt-0 text-slate-950 font-semibold p-3 hover:text-purple"
             >
               Luo julkaisu
             </Link>
-          </li> */}
+          </li>
             
           <li className="lg:mr-4">
             <Link

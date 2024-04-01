@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="fi">
       <body className={inter.className}>
         <NavBar font={almarai.className} />
-        <main className="flex min-h-screen flex-col items-center p-4">
+        <main className="flex min-h-screen flex-col items-center p-4 bg-white">
           {children}
         </main>
       </body>
