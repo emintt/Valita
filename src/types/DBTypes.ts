@@ -1,3 +1,4 @@
+import { ErrorResponse } from '@sharedTypes/MessageTypes';
 type Post = {
   post_id: number;
   user_id: number;
@@ -16,5 +17,7 @@ type Company = {
 };
 
 type PostWithCompanyName = Post & Pick<Company, 'company_name'>;
+
+
 
 export type {Post, PostWithCompanyName, Company};

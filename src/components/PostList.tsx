@@ -1,6 +1,5 @@
 import {fetchCompanyById} from '@/models/companyModels';
 import {fetchAllPost} from '@/models/postModels';
-import {Post} from '@/types/DBTypes';
 
 export const revalidate = 0;
 
