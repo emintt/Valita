@@ -1,9 +1,9 @@
 import {fetchCompanyById} from '@/models/companyModels';
 import {fetchAllPost} from '@/models/postModels';
 
-export const revalidate = 0;
 
 const PostList = async () => {
+
   const postList = await fetchAllPost();
   if (!postList) {
     return <p>no post found</p>;
@@ -18,6 +18,7 @@ const PostList = async () => {
       };
     }),
   );
+  postListWithCompanyName.reverse();
 
   return (
     <>

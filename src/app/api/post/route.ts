@@ -3,6 +3,7 @@ import { Post } from "@/types/DBTypes";
 import { NextRequest, NextResponse } from "next/server";
 import { stringify } from "querystring";
 
+
 export async function POST(request: NextRequest) {
   try {
     // get the form data from the request

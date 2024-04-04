@@ -19,7 +19,9 @@ const PostForm =  () => {
           body: formData,    
         };
       await fetchData('/api/post', options);
+      
       router.push('/');
+      router.refresh();
     } catch (error) {
       console.error(error);
     }

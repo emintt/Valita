@@ -2,6 +2,7 @@ import {promisePool} from '@/lib/db';
 import {Post} from '@/types/DBTypes';
 import {ResultSetHeader, RowDataPacket} from 'mysql2';
 
+
 const fetchAllPost = async (): Promise<Post[] | null> => {
   // const uploadPath = process.env.UPLOAD_URL;
   try {
