@@ -6,4 +6,8 @@ type ErrorResponse = MessageResponse & {
   stack?: string;
 };
 
-export type {MessageResponse, ErrorResponse};
+type CompanyResponse = MessageResponse & {
+  company_id: number;
+};
+
+export type {MessageResponse, ErrorResponse, CompanyResponse};

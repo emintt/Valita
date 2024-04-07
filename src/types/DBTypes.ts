@@ -8,12 +8,13 @@ type Post = {
   media_type: string;
   title: string;
   content: string;
-  created_at: string;
+  created_at: Date;
 };
 
 type Company = {
   company_id: number;
   company_name: string;
+  created_at: Date;
 };
 
 type PostWithCompanyName = Post & Pick<Company, 'company_name'>;

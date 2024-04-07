@@ -1,6 +1,8 @@
 'use client';
 import { fetchData } from "@/lib/functions";
+import { CompanyResponse, MessageResponse } from "@/types/MessageTypes";
 import { useRouter } from "next/navigation";
+import { stringify } from "querystring";
 import { FieldValues, useForm } from "react-hook-form";
 
 type PostFormField = {
@@ -16,43 +18,47 @@ const PostForm =  () => {
     handleSubmit, 
     formState: {errors, isSubmitting}, 
     reset, 
-    getValues} = useForm<PostFormField>();
+    getValues
+  } = useForm<PostFormField>();
 
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   try {
-  //     // create form data and add the form content to it
-  //     const formData = new FormData(e.currentTarget);
-  //     // send the form data to Next.js API endpoint /api/post
-  //     const options: RequestInit = {
-  //         method: 'POST',
-  //         body: formData,    
-  //       };
-  //     await fetchData('/api/post', options);
-      
-  //     router.push('/');
-  //     router.refresh();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
   
+
   const onSubmit = async (data : FieldValues) => {
     console.log('data', data);
     try {
       // create form data and add the form content to it
       const formData = new FormData();
-      console.log(typeof(data));
       Object.entries(data).forEach(([key, value]) => {
         formData.append(key, value);
       });
-      console.log(formData);
-       // send the form data to Next.js API endpoint /api/post
+      
+      // post company name to database
+      const companyData = {
+        company_name: data.company_name,
+      }
+      // send company name to Nextjs API end point /api/company
+      const companyResult = await fetchData<CompanyResponse>('/api/company', {
+        method: 'POST',
+        body: JSON.stringify(companyData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!companyResult) {
+        throw new Error('Error posting company name');
+      }
+
+      // TODO: fix the ERROR
+      formData.append('company_id', companyResult.company_id);
+      console.log(formData.get('company_id'));
+      
+      // send the form data to Next.js API endpoint /api/post
       const options: RequestInit = {
           method: 'POST',
           body: formData,    
         };
-      await fetchData('/api/post', options);
+      await fetchData<MessageResponse>('/api/post', options);
       
       router.push('/');
       router.refresh();
