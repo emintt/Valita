@@ -1,6 +1,6 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-const NavBar = ({font} : {font: string}) => {
+const NavBar = ({font}: {font: string}) => {
   return (
     <nav className="flex items-center justify-end flex-wrap bg-white py-2 px-4 tracking-wider border-b border-gray-200">
       <div className="flex items-center flex-shrink-0 text-white mr-auto">
@@ -56,7 +56,15 @@ const NavBar = ({font} : {font: string}) => {
               Luo julkaisu
             </Link>
           </li>
-            
+
+          <li className="lg:mr-4">
+            <Link
+              href="/register"
+              className="block lg:inline-block lg:mt-0 text-slate-950 font-semibold p-3 hover:text-purple  "
+            >
+              Rekisteröidy
+            </Link>
+          </li>
           <li className="lg:mr-4">
             <Link
               href="/login"
@@ -66,9 +74,9 @@ const NavBar = ({font} : {font: string}) => {
             </Link>
           </li>
         </ul>
-      </div>  
+      </div>
     </nav>
   );
-}
+};
 
 export default NavBar;

@@ -17,11 +17,11 @@ const config: Config = {
         'light-blue': '#EBF3FF',
         'light-orange': '#FFEEE6',
         'blue-violet': '#3A86FF',
-        'purple': '#8338EC',
-        'rose': '#FF006E',
-        'yellow': '#FFBE0B',
-        'orange': '#FB5607'
-      }
+        purple: '#8338EC',
+        rose: '#FF006E',
+        yellow: '#FFBE0B',
+        orange: '#FB5607',
+      },
     },
   },
   plugins: [],

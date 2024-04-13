@@ -1,9 +1,7 @@
 import {fetchCompanyById} from '@/models/companyModels';
 import {fetchAllPost} from '@/models/postModels';
 
-
 const PostList = async () => {
-
   const postList = await fetchAllPost();
   if (!postList) {
     return <p>no post found</p>;

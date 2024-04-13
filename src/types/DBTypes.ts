@@ -24,11 +24,11 @@ type UserWithLevel = {
   email: string;
   created_at: Date;
   level_name: string;
-}
+};
 
 type TokenContent = {
   user_id: number;
   level_name: string;
-}
+};
 
 export type {Post, PostWithCompanyName, Company, UserWithLevel, TokenContent};

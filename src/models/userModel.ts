@@ -1,9 +1,6 @@
-import { UserWithLevel } from '@/types/DBTypes';
-import { promisePool } from '@/lib/db';
+import {UserWithLevel} from '@/types/DBTypes';
+import {promisePool} from '@/lib/db';
 import {ResultSetHeader, RowDataPacket} from 'mysql2';
-
-
-
 
 const getUserByEmail = async (email: string): Promise<UserWithLevel | null> => {
   try {
@@ -36,7 +33,4 @@ const getUserByEmail = async (email: string): Promise<UserWithLevel | null> => {
   }
 };
 
-export {
-  getUserByEmail,
-
-};
+export {getUserByEmail};

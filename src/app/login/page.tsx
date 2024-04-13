@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
-import { getSession, login, logout } from '@/lib/authActions';
+import {redirect} from 'next/navigation';
+import {getSession, login, logout} from '@/lib/authActions';
 
 export default async function Page() {
   // const session = await getSession();

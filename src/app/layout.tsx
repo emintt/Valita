@@ -7,7 +7,7 @@ import NavBar from '@/components/NavBar';
 const inter = Inter({subsets: ['latin']});
 const almarai = Almarai({
   subsets: ['arabic'],
-  weight: '700'
+  weight: '700',
 });
 export const metadata: Metadata = {
   title: 'Valita App',

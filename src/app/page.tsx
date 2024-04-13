@@ -3,7 +3,6 @@ import Image from 'next/image';
 // export const revalidate = 0;
 
 export default function Home() {
-
   const postArray = [
     {
       post_id: 1,
@@ -81,7 +80,6 @@ export default function Home() {
     },
   ];
   return (
-
     <>
       <h1 className="text-4xl font-bold">Home</h1>
       <section>

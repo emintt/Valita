@@ -1,18 +1,23 @@
-import { postPost } from "@/models/postModels";
-import { Post } from "@/types/DBTypes";
-import { NextRequest, NextResponse } from "next/server";
-import { stringify } from "querystring";
-
+import {postPost} from '@/models/postModels';
+import {Post} from '@/types/DBTypes';
+import {NextRequest, NextResponse} from 'next/server';
+import {stringify} from 'querystring';
 
 export async function POST(request: NextRequest) {
   try {
     // get the form data from the request
     const formData = await request.formData();
-    
+
     // add post to database
     // get company_name, title, content from the form data
-    if (!formData.get('title') || !formData.get('company_name') || !formData.get('content')) {
-      return NextResponse.json('Title, company name and content is required', { status: 400 })
+    if (
+      !formData.get('title') ||
+      !formData.get('company_name') ||
+      !formData.get('content')
+    ) {
+      return NextResponse.json('Title, company name and content is required', {
+        status: 400,
+      });
     }
 
     if (!formData.get('company_id')) {
@@ -21,19 +26,21 @@ export async function POST(request: NextRequest) {
 
     const postData: Omit<Post, 'post_id' | 'created_at'> = {
       title: formData.get('title') as string,
-      company_id: Number(formData.get('company_id') as string), 
+      company_id: Number(formData.get('company_id') as string),
       content: formData.get('content') as string,
       filename: 'jbffjdbfcjknlj.kuva',
       filesize: 1634,
       media_type: 'image',
-      user_id: 1
-    }
+      user_id: 1,
+    };
     await postPost(postData);
-    return NextResponse.json(stringify( {
-      message: 'Post added to database',
-    }));
+    return NextResponse.json(
+      stringify({
+        message: 'Post added to database',
+      }),
+    );
   } catch (error) {
     console.error((error as Error).message, error);
-    return new NextResponse((error as Error).message, { status: 500 });
+    return new NextResponse((error as Error).message, {status: 500});
   }
 }
