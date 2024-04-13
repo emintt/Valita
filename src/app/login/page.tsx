@@ -17,16 +17,16 @@ export default async function Page() {
         >
           <div className="mb-4">
             <label
-              htmlFor="username"
+              htmlFor="email"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
-              Username
+              Sähköpostiosoite:
             </label>
             <input
               type="text"
-              name="username"
-              id="username"
-              placeholder="Username"
+              name="email"
+              id="email"
+              placeholder="email"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
@@ -35,7 +35,7 @@ export default async function Page() {
               htmlFor="password"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
-              Password
+              Salasana:
             </label>
             <input
               type="password"

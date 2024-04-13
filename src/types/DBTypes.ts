@@ -1,4 +1,3 @@
-import { ErrorResponse } from '@sharedTypes/MessageTypes';
 type Post = {
   post_id: number;
   user_id: number;
@@ -19,6 +18,13 @@ type Company = {
 
 type PostWithCompanyName = Post & Pick<Company, 'company_name'>;
 
+type UserWithLevel = {
+  user_id: number;
+  password: string;
+  email: string;
+  created_at: Date
+  level_name: string;
+}
 
 
-export type {Post, PostWithCompanyName, Company};
+export type {Post, PostWithCompanyName, Company, UserWithLevel};
