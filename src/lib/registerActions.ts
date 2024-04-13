@@ -1,7 +1,8 @@
 'use server';
 
-const doRegisterAction = async () => {
-  console.log('hello from server!');
+const doRegisterAction = async (formData: FormData) => {
+  const user = Object.fromEntries(formData);
+  console.log(user);
 }
 
 export {doRegisterAction};
