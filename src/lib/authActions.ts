@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { getUserByEmail } from '@/models/userModel';
+import { TokenContent } from '@/types/DBTypes';
 
 // const secretKey = "secret";
 // const key = new TextEncoder().encode(secretKey);
@@ -42,9 +43,17 @@ export async function login(formData: FormData) {
     throw new Error('JWT secret not set');
   }
 
+  // Create token object
+  const tokenContent: TokenContent = {
+    user_id: user.user_id,
+    level_name: user.level_name
+  }
+
   // Create the session
   const expires = new Date(Date.now() + 10 * 1000);
-  const session = await encrypt({ user, expires });
+  const session = jwt.sign(tokenContent, process.env.JWT_SECRET, {
+    expiresIn: '10 min'
+  });
 
   // Save the session in a cookie
   cookies().set("session", session, { expires, httpOnly: true });
@@ -55,25 +64,27 @@ export async function logout() {
   cookies().set("session", "", { expires: new Date(0) });
 }
 
-export async function getSession() {
+export function getSession(): TokenContent | null {
   const session = cookies().get("session")?.value;
   if (!session) return null;
-  return await decrypt(session);
+  return jwt.verify(session, process.env.JWT_SECRET as string) as TokenContent;
 }
 
-export async function updateSession(request: NextRequest) {
+export function updateSession(request: NextRequest) {
   const session = request.cookies.get("session")?.value;
   if (!session) return;
 
   // Refresh the session so it doesn't expire
-  const parsed = await decrypt(session);
-  parsed.expires = new Date(Date.now() + 10 * 1000);
+  const parsed =  jwt.verify(session, process.env.JWT_SECRET as string) as TokenContent;
+  const expires = new Date(Date.now() + 10 * 1000);
   const res = NextResponse.next();
   res.cookies.set({
     name: "session",
-    value: await encrypt(parsed),
+    value: jwt.sign(parsed, process.env.JWT_SECRET as string, {
+      expiresIn: '10 min'
+    }),
     httpOnly: true,
-    expires: parsed.expires,
+    expires: expires,
   });
   return res;
 }
