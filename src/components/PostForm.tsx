@@ -89,7 +89,7 @@ const PostForm = () => {
             name="company_name"
             id="company_name"
             className=" border rounded-lg w-full py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-300"
-            placeholder="Missä työskentelet?"
+            placeholder=""
           />
 
           {errors.company_name && (
@@ -118,7 +118,7 @@ const PostForm = () => {
             name="title"
             id="title"
             className=" border rounded-lg w-full py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-300 "
-            placeholder="Otsikko"
+            placeholder=""
           />
           {errors.title && (
             <p className=" text-red-600">{`${errors.title.message}`}</p>
@@ -146,9 +146,9 @@ const PostForm = () => {
             name="content"
             id="content"
             className=" border rounded-lg w-full py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-300"
-            placeholder="Mitä mietit?"
-          ></textarea>
-
+            placeholder=""
+          ></textarea>          
+          
           {errors.content && (
             <p className=" text-red-600">{`${errors.content.message}`}</p>
           )}
@@ -160,11 +160,10 @@ const PostForm = () => {
           <input className="" id="file_input" type="file" name="file" />
         </div>
         <div className="flex">
-          <input
-            type="submit"
-            className=" w-full sm:w-1/2 mx-auto text-center bg-purple text-white p-4 mt-2 rounded-lg text-xl"
-            value={`${isSubmitting ? 'Julkaistaan...' : 'Julkaista'}`}
-          />
+          <input 
+            type="submit" 
+            className=" w-full sm:w-1/2 mx-auto text-center bg-blue-violet text-white p-4 mt-2 rounded-lg text-xl"
+            value={`${isSubmitting ? 'Julkaistaan...' : 'Julkaista'}`} />
         </div>
       </form>
     </div>

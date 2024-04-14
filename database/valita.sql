@@ -80,3 +80,5 @@ INSERT INTO Posts (user_id, company_id, filename, filesize, media_type, title, c
 VALUES (1, 1, 'sunset.jpg', 1024, 'image/jpeg', 'Testi title', 'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'),
   (2, 2, 'sunset.jpg', 1024, 'image/jpeg', 'Testi title', 'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
   (3, 3, 'sunset.jpg', 1024, 'image/jpeg', 'Jotain title', ' It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum');
+
+
