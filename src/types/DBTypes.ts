@@ -13,7 +13,7 @@ type Post = {
 
 type Company = {
   company_id: number;
-  company_name: string;
+  company_name: string | undefined;
   created_at: Date;
 };
 
