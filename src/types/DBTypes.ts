@@ -31,4 +31,19 @@ type TokenContent = {
   level_name: string;
 };
 
-export type {Post, PostWithCompanyName, Company, UserWithLevel, TokenContent};
+type UserLevel = {
+  level_id: number; 
+  level_name: 'Admin' | 'User';
+};
+
+type User = {
+  user_id: number; 
+  password: string;
+  email: string;
+  user_level_id: number;
+  created_at: Date | string;
+};
+
+type UserWithNoPassword = Omit<UserWithLevel, 'password'>;
+
+export type {Post, PostWithCompanyName, Company, UserWithLevel, TokenContent, User, UserWithNoPassword, UserLevel};
