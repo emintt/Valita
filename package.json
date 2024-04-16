@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "test": "vitest",
+    "test:unit": "vitest --environment jsdom",
     "lint": "next lint",
     "format": "prettier --check .",
     "format:fix": "prettier --write --list-different ."

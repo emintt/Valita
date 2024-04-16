@@ -10,7 +10,6 @@ on:
 
 jobs:
   unit:
-    # lam moi truong chay test
     runs-on: ubuntu-latest
 
     steps:
@@ -34,4 +33,4 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - run: npm ci
       # - run: npm run build --if-present
-      # - run: npm run test:unit
+      - run: npm run test:unit
