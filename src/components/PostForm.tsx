@@ -66,107 +66,116 @@ const PostForm = () => {
   };
 
   return (
-    <div className=" flex justify-center w-full">
-      <form onSubmit={handleSubmit(onSubmit)} className=" w-full">
-        <div className="mb-4">
-          <label
-            htmlFor="company_name"
-            className=" after:content-['*'] after:text-blue-violet font-medium"
-          >
-            Yrityksen nimi
-          </label>
-          <input
-            {...register('company_name', {
-              required: 'Company name is required',
-              minLength: {
-                value: 1,
-                message: 'Company name must be at least 1 characters',
-              },
-              validate: (value) =>
-                value.trim().length < 1 ? 'Company name is required' : true,
-            })}
-            type="text"
-            name="company_name"
-            id="company_name"
-            className=" border rounded-lg w-full py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-300"
-            placeholder=""
-          />
+    <>
+      <h2 className=" text-2xl text-center font-black font-serif mb-6 mt-4">Luo julkaisu</h2>
+      <div className=" flex justify-center w-full">
+        <form onSubmit={handleSubmit(onSubmit)} className=" w-full" aria-label="post-form">
+          <div className="mb-4">
+            <label
+              htmlFor="company_name"
+              className=" after:content-['*'] after:text-blue-violet font-medium"
+            >Yrityksen nimi</label>
+            <input
+              {
+                ...register("company_name", {
+                  required:"Company name is required",
+                  minLength: {
+                    value: 1,
+                    message: "Company name must be at least 1 characters",
+                  },
+                  validate: (value) => (value.trim().length < 1 ? "Company name is required" : true)
+                })
+              }
+              type="text"
+              name="company_name"
+              id="company_name"
+              className=" border rounded-lg w-full py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-300"
+              placeholder=""
+            />
+            
+            {errors.company_name && (
+              <p className=" text-red-600">{`${errors.company_name.message}`}</p>
+            )}
+          </div>
+          <div className="mb-4">
+            <label
+              htmlFor="title"
+              className=" after:content-['*'] after:text-blue-violet font-medium"
+            >Otsikko</label>
+            
+            <input
+              {
+                ...register("title", {
+                  required:"Title is required",
+                  minLength: {
+                    value: 2,
+                    message: "Title must be at least 2 characters",
+                  },
+                  validate: (value) => (value.trim().length < 2 ? "Title is required" : true)
+                })
+              }
+              type="text"
+              name="title"
+              id="title"
+              className=" border rounded-lg w-full py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-300 "
+              placeholder=""
+            />
+            {errors.title && (
+              <p className=" text-red-600">{`${errors.title.message}`}</p>
+            )}
+          </div>  
+          <div className="mb-4">
+            <label
+              htmlFor="content"
+              className=" after:content-['*'] after:text-blue-violet font-medium"
 
-          {errors.company_name && (
-            <p className=" text-red-600">{`${errors.company_name.message}`}</p>
-          )}
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="title"
-            className=" after:content-['*'] after:text-blue-violet font-medium"
-          >
-            Otsikko
-          </label>
-
-          <input
-            {...register('title', {
-              required: 'Title is required',
-              minLength: {
-                value: 2,
-                message: 'Title must be at least 2 characters',
-              },
-              validate: (value) =>
-                value.trim().length < 2 ? 'Title is required' : true,
-            })}
-            type="text"
-            name="title"
-            id="title"
-            className=" border rounded-lg w-full py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-300 "
-            placeholder=""
-          />
-          {errors.title && (
-            <p className=" text-red-600">{`${errors.title.message}`}</p>
-          )}
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="content"
-            className=" after:content-['*'] after:text-blue-violet font-medium"
-          >
-            Sisältö
-          </label>
-          <textarea
-            {...register('content', {
-              required: 'Content is required',
-              minLength: {
-                value: 10,
-                message: 'Content must be at least 10 characters',
-              },
-              validate: (value) =>
-                !value.trim() ? 'Content must be at least 10 characters' : true,
-            })}
-            cols={30}
-            rows={5}
-            name="content"
-            id="content"
-            className=" border rounded-lg w-full py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-300"
-            placeholder=""
-          ></textarea>          
-          
-          {errors.content && (
-            <p className=" text-red-600">{`${errors.content.message}`}</p>
-          )}
-        </div>
-        <div className="mb-4">
-          <label htmlFor="file" className="block font-medium">
-            Media
-          </label>
-          <input className="" id="file_input" type="file" name="file" />
-        </div>
-        <div className="flex">
-          <input 
-            type="submit" 
-            className=" w-full sm:w-1/2 mx-auto text-center bg-blue-violet text-white p-4 mt-2 rounded-lg text-xl"
-            value={`${isSubmitting ? 'Julkaistaan...' : 'Julkaista'}`} />
-        </div>
-      </form>
-    </div>
+            >Sisältö</label>
+            <textarea
+              {
+                ...register("content", {
+                  required:"Content is required",
+                  minLength: {
+                    value: 10,
+                    message: "Content must be at least 10 characters",
+                  },
+                  validate: (value) => (!value.trim() ? "Content must be at least 10 characters" : true)
+                })
+              }
+              cols={30}
+              rows= {5}
+              name="content"
+              id="content"
+              className=" border rounded-lg w-full py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-300"
+              placeholder=""
+            ></textarea>          
+            
+            {errors.content && (
+              <p className=" text-red-600">{`${errors.content.message}`}</p>
+            )}
+          </div>
+          <div className="mb-4">
+              <label
+                htmlFor="file"
+                className="block font-medium"
+              >
+                Media (TULOSSA)
+              </label>
+              {/* <input
+                className=""
+                id="file_input"
+                type="file"
+                name="file"
+              /> */}
+            </div>
+          <div className="flex">
+            <input 
+              type="submit" 
+              className=" w-full sm:w-1/3 mx-auto text-center bg-blue-violet text-white p-3 mt-2 rounded-lg text-xl"
+              value={`${isSubmitting ? 'Julkaistaan...' : 'Julkaista'}`} />
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 
