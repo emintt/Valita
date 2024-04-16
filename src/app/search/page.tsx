@@ -3,7 +3,6 @@ import SearchBox from "@/components/SearchBox";
 
 const Search = () => {
 
-
   
   return (
     <>

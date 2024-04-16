@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "vitest",
     "lint": "next lint",
     "format": "prettier --check .",
     "format:fix": "prettier --write --list-different ."
@@ -18,16 +19,21 @@
     "react-hook-form": "^7.51.2"
   },
   "devDependencies": {
+    "@testing-library/react": "^15.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.3",
     "eslint-config-prettier": "^9.1.0",
+    "jsdom": "^24.0.0",
     "postcss": "^8",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^1.5.0"
   }
 }
