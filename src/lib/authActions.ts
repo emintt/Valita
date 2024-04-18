@@ -1,47 +1,72 @@
+'use server';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import {cookies} from 'next/headers';
 import {NextRequest, NextResponse} from 'next/server';
 import {getUserByEmail} from '@/models/userModel';
 import {TokenContent} from '@/types/DBTypes';
+import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
-export async function login(formData: FormData) {
+export async function login(prevState: any, formData: FormData) {
   // Verify credentials && get the user
   // Get the user DB by email from the form
   const user = await getUserByEmail(formData.get('email') as string);
+  try {
+    if (!user) {
+      // throw new Error('Incorrect email or password');
+      return {
+        type: 'error',
+        message: 'Incorrect email or password',
+      };
+    }
 
-  if (!user) {
-    throw new Error('Incorrect email or password');
+    // compare password
+    const isPasswordCorrect = bcrypt.compareSync(
+      formData.get('password') as string,
+      user.password,
+    );
+
+    if (user.password && !isPasswordCorrect) {
+      //throw new Error('Incorrect email or password');
+      return {
+        type: 'error',
+        message: 'Incorrect email or password',
+      };
+    }
+
+    if (!process.env.JWT_SECRET) {
+      //throw new Error('JWT secret not set');
+      return {
+        type: 'error',
+        message: 'Something went wrong',
+      };
+    }
+
+    // Create token object
+    const tokenContent: TokenContent = {
+      user_id: user.user_id,
+      level_name: user.level_name,
+    };
+
+    // Create the session
+    const expires = new Date(Date.now() + 60 * 60 * 1000);
+    const session = jwt.sign(tokenContent, process.env.JWT_SECRET, {
+      expiresIn: '1h',
+    });
+
+    // Save the session in a cookie
+    cookies().set('session', session, {expires, httpOnly: true});
+  } catch (e) {
+    return {
+      type: 'error',
+      message: 'Failed to login.',
+    };
+    
   }
-
-  // compare password
-  const isPasswordCorrect = bcrypt.compareSync(
-    formData.get('password') as string,
-    user.password,
-  );
-
-  if (user.password && !isPasswordCorrect) {
-    throw new Error('Incorrect email or password');
-  }
-
-  if (!process.env.JWT_SECRET) {
-    throw new Error('JWT secret not set');
-  }
-
-  // Create token object
-  const tokenContent: TokenContent = {
-    user_id: user.user_id,
-    level_name: user.level_name,
-  };
-
-  // Create the session
-  const expires = new Date(Date.now() + 10 * 1000);
-  const session = jwt.sign(tokenContent, process.env.JWT_SECRET, {
-    expiresIn: '10 min',
-  });
-
-  // Save the session in a cookie
-  cookies().set('session', session, {expires, httpOnly: true});
+  
+  revalidatePath('/');
+  redirect('/');
 }
 
 export async function logout() {
@@ -49,13 +74,13 @@ export async function logout() {
   cookies().set('session', '', {expires: new Date(0)});
 }
 
-export function getSession(): TokenContent | null {
+export async function getSession(): Promise<TokenContent | null> {
   const session = cookies().get('session')?.value;
   if (!session) return null;
   return jwt.verify(session, process.env.JWT_SECRET as string) as TokenContent;
 }
 
-export function updateSession(request: NextRequest) {
+export async function updateSession(request: NextRequest) {
   const session = request.cookies.get('session')?.value;
   if (!session) return;
 
@@ -69,10 +94,17 @@ export function updateSession(request: NextRequest) {
   res.cookies.set({
     name: 'session',
     value: jwt.sign(parsed, process.env.JWT_SECRET as string, {
-      expiresIn: '10 min',
+      expiresIn: '1h',
     }),
     httpOnly: true,
     expires: expires,
   });
   return res;
+};
+
+export async function requireAuth() {
+  const session = await getSession();
+  if (!session?.user_id) {
+    redirect('/');
+  }
 }

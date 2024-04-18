@@ -47,7 +47,7 @@ const PostForm = () => {
       }
 
       // TODO: fix the ERROR
-      formData.append('company_id', companyResult.company_id);
+      formData.append('company_id', String(companyResult.company_id));
       // console.log(formData.get('company_id'));
 
       // send the form data to Next.js API endpoint /api/post
