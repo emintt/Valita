@@ -1,7 +1,6 @@
 'use client';
 import {login} from '@/lib/authActions';
 import { useState } from 'react';
-import { useFormState } from 'react-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 
 
@@ -45,7 +44,6 @@ export default  function LoginForm() {
     // call server action to do login
     const response = await login(formData);
     setServerResponse(response);
-    console.log(serverResponse);
     reset();
   }
 
