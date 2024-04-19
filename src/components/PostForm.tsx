@@ -68,12 +68,12 @@ const PostForm = () => {
   return (
     <>
       <h2 className=" text-2xl text-center font-black font-serif mb-6 mt-4">Luo julkaisu</h2>
-      <div className=" flex justify-center w-full">
-        <form onSubmit={handleSubmit(onSubmit)} className=" w-full" aria-label="post-form">
+      <div className=" p-8 flex flex-col rounded-lg  w-full sm:px-8 sm:py-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-1" aria-label="post-form">
           <div className="mb-4">
             <label
               htmlFor="company_name"
-              className=" after:content-['*'] after:text-blue-violet font-medium"
+              className="block text-gray-700 text-sm  font-bold mb-2 after:content-['*'] after:text-blue-violet"
             >Yrityksen nimi</label>
             <input
               {
@@ -89,18 +89,17 @@ const PostForm = () => {
               type="text"
               name="company_name"
               id="company_name"
-              className=" border rounded-lg w-full py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-300"
-              placeholder=""
+              className=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-8 focus:outline-none focus:border-blue-violet border-slate-300"
             />
             
             {errors.company_name && (
-              <p className=" text-red-600">{`${errors.company_name.message}`}</p>
+              <p className=" text-orange text-sm">{`${errors.company_name.message}`}</p>
             )}
           </div>
           <div className="mb-4">
             <label
               htmlFor="title"
-              className=" after:content-['*'] after:text-blue-violet font-medium"
+              className="block text-gray-700 text-sm  font-bold mb-2 after:content-['*'] after:text-blue-violet"
             >Otsikko</label>
             
             <input
@@ -117,17 +116,16 @@ const PostForm = () => {
               type="text"
               name="title"
               id="title"
-              className=" border rounded-lg w-full py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-300 "
-              placeholder=""
+              className=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-8 focus:outline-none focus:border-blue-violet border-slate-300 "
             />
             {errors.title && (
-              <p className=" text-red-600">{`${errors.title.message}`}</p>
+              <p className=" text-orange text-sm">{`${errors.title.message}`}</p>
             )}
           </div>  
           <div className="mb-4">
             <label
               htmlFor="content"
-              className=" after:content-['*'] after:text-blue-violet font-medium"
+              className=" block text-gray-700 text-sm  font-bold mb-2 after:content-['*'] after:text-blue-violet"
 
             >Sisältö</label>
             <textarea
@@ -145,12 +143,12 @@ const PostForm = () => {
               rows= {5}
               name="content"
               id="content"
-              className=" border rounded-lg w-full py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-300"
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-8 focus:outline-none focus:border-blue-violet border-slate-300"
               placeholder=""
             ></textarea>          
             
             {errors.content && (
-              <p className=" text-red-600">{`${errors.content.message}`}</p>
+              <p className=" text-orange text-sm">{`${errors.content.message}`}</p>
             )}
           </div>
           <div className="mb-4">
@@ -170,7 +168,7 @@ const PostForm = () => {
           <div className="flex">
             <input 
               type="submit" 
-              className=" w-full sm:w-1/3 mx-auto text-center bg-blue-violet text-white p-3 mt-2 rounded-lg text-xl"
+              className="  w-full sm:w-1/3 mx-auto text-center bg-blue-violet hover:bg-blue-darker text-white p-3 mt-2 rounded-lg text-xl"
               value={`${isSubmitting ? 'Julkaistaan...' : 'Julkaista'}`} />
           </div>
         </form>

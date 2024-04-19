@@ -17,11 +17,16 @@ const config: Config = {
         'light-blue': '#EBF3FF',
         'light-orange': '#FFEEE6',
         'blue-violet': '#3A86FF',
+        'blue-darker': '#1971FF',
         purple: '#8338EC',
         rose: '#FF006E',
         yellow: '#FFBE0B',
         orange: '#FB5607',
+        'orange-darker': '#CD4303'
       },
+      screens: {
+        'xs': '480px',
+      }
     },
   },
   plugins: [],

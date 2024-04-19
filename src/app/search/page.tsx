@@ -1,7 +1,7 @@
 import PostList from "@/components/PostList";
 import SearchBox from "@/components/SearchBox";
 
-const Search = () => {
+export default function Search () {
 
   
   return (
@@ -18,4 +18,3 @@ const Search = () => {
   );
 };
 
-export default Search;

@@ -1,7 +1,8 @@
 'use client';
-import {redirect} from 'next/navigation';
-import {getSession, login, logout} from '@/lib/authActions';
+import {login} from '@/lib/authActions';
+import { useState } from 'react';
 import { useFormState } from 'react-dom';
+import { FieldValues, useForm } from 'react-hook-form';
 
 
 const initialState = {
@@ -9,10 +10,10 @@ const initialState = {
   message: '',
 }
 
+
 export default  function LoginForm() {
   // const session = await getSession();
 
-  
   const logoutHandler = async () => {
     // 'use server';
     // await logout();
@@ -20,65 +21,115 @@ export default  function LoginForm() {
     console.log('');
   };
  
-  const [loginState, loginFormAction] = useFormState(login, initialState);
+  //const [loginState, loginFormAction] = useFormState(login, initialState);
+  const [serverResponse, setServerResponse] = useState<{
+    type: string,
+    message: string,
+  }>(initialState);
+
+  const {
+    register,
+    handleSubmit,
+    formState: {errors, isSubmitting},
+    reset,
+  } = useForm<FieldValues>();
+
+  // if all fields are validated, call server action to login
+  const onSubmit = async (data: FieldValues) => {
+    // create formdata and add the form content to it
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    // call server action to do login
+    const response = await login(formData);
+    setServerResponse(response);
+    console.log(serverResponse);
+    reset();
+  }
 
   return (
-    <section>
-      <div className="flex flex-col p-8">
+    <section className="shadow border border-gray-200 bg-white pt-6 pb-8 w-full xs:w-[415px] md:w-[500px] ">
+      <h2 className=" text-2xl text-center font-black font-serif mb-6 mt-4">Kirjaudu sisään</h2>
+      <div className=" p-8 flex flex-col rounded-lg  w-full sm:px-8 sm:py-4">
         {/* {!session ? ( */}
-        {loginState?.message ? <p className=' text-orange'>{loginState?.message}</p> : <p></p>}
+        {serverResponse?.message && <p className=' text-orange text-sm'>{serverResponse?.message}</p>}
         <form
-          action={loginFormAction}
-          className=' mt-1'
+          // action={loginFormAction}
+          onSubmit={handleSubmit(onSubmit)}
+          className=' mt-1 '
         >
-          <div className="mb-4">
+          <div className="mt-3 mb-1">
             <label
               htmlFor="email"
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-sm  font-bold mb-2 after:content-['*'] after:text-blue-violet"
             >
               Sähköpostiosoite:
             </label>
             <input
+              {
+                ...register("email", {
+                  required:"Sähköposti vaaditaan",
+                  pattern: {
+                    value: /^.+@.+\..+$/,
+                    message: "Täytyy olla kelvollinen sähköpostiosoite",
+                  },
+                })
+              }
               type="text"
               name="email"
               id="email"
-              placeholder="email"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder=""
+              className={`appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-8 focus:outline-none focus:border-blue-violet border-slate-300 ${
+                errors.email ? 'focus:border-orange' : ''
+              }`} 
             />
           </div>
-          <div className="mb-4">
+          {errors.email && (
+              <p className=" text-orange-darker text-sm">{`${errors.email.message}`}</p>
+            )}
+          <div className=" mt-3 mb-1">
             <label
               htmlFor="password"
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-sm  font-bold mb-2 after:content-['*'] after:text-blue-violet"
             >
               Salasana:
             </label>
             <input
+              {
+                ...register("password", {
+                  required:"Salasana vaaditaan",
+                  minLength: {
+                    value: 5,
+                    message: "Salasanan täytyy olla vähintään 5 merkkiä",
+                  },
+                  validate: (value) => (value.trim() < 5 ? "ei tyhjä" : true)
+                
+                })
+              }
               type="password"
               name="password"
               id="password"
-              placeholder="Password"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder=""
+              className={`appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-8 focus:outline-none focus:border-blue-violet border-slate-300 ${
+                errors.email ? 'focus:border-orange' : ''
+              }`} 
             />
           </div>
+          {errors.password && (
+              <p className=" text-orange-darker text-sm">{`${errors.password.message}`}</p>
+            )}
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className=" w-full mx-auto text-center bg-blue-violet hover:bg-blue-darker font-bold p-4 mt-6 rounded-lg text-xl focus:outline-none focus:shadow-outline"
+
           >
             Login
           </button>
         </form>
         {/* ) : ( */}
-        <form
-          action={logoutHandler}
-        >
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            Logout
-          </button>
-        </form>
+        
         {/* )} */}
       </div>
     </section>

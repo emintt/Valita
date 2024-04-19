@@ -8,7 +8,7 @@ import {TokenContent} from '@/types/DBTypes';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 
-export async function login(prevState: any, formData: FormData) {
+export async function login(formData: FormData) {
   // Verify credentials && get the user
   // Get the user DB by email from the form
   const user = await getUserByEmail(formData.get('email') as string);
@@ -17,21 +17,22 @@ export async function login(prevState: any, formData: FormData) {
       // throw new Error('Incorrect email or password');
       return {
         type: 'error',
-        message: 'Incorrect email or password',
+        message: 'Virheellinen sähköpostiosoite tai salasana',
       };
     }
 
+  
     // compare password
     const isPasswordCorrect = bcrypt.compareSync(
       formData.get('password') as string,
       user.password,
     );
-
+    console.log(isPasswordCorrect);
     if (user.password && !isPasswordCorrect) {
       //throw new Error('Incorrect email or password');
       return {
         type: 'error',
-        message: 'Incorrect email or password',
+        message: 'Virheellinen sähköpostiosoite tai salasana',
       };
     }
 
@@ -39,7 +40,7 @@ export async function login(prevState: any, formData: FormData) {
       //throw new Error('JWT secret not set');
       return {
         type: 'error',
-        message: 'Something went wrong',
+        message: 'Jotain meni pieleen',
       };
     }
 
@@ -57,14 +58,13 @@ export async function login(prevState: any, formData: FormData) {
 
     // Save the session in a cookie
     cookies().set('session', session, {expires, httpOnly: true});
-  } catch (e) {
-    return {
-      type: 'error',
-      message: 'Failed to login.',
-    };
-    
-  }
+   
   
+  } catch (e) {
+    console.error(e);
+  } 
+
+   
   revalidatePath('/');
   redirect('/');
 }
@@ -72,6 +72,7 @@ export async function login(prevState: any, formData: FormData) {
 export async function logout() {
   // Destroy the session
   cookies().set('session', '', {expires: new Date(0)});
+  redirect('/');
 }
 
 export async function getSession(): Promise<TokenContent | null> {
