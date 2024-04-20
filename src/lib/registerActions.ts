@@ -1,33 +1,57 @@
 'use server';
-import { createUser } from '@/models/userModel';
+import { checkEmailExists, createUser } from '@/models/userModel';
 import { User } from '@/types/DBTypes';
 import bcrypt from 'bcrypt';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
-const doRegisterAction = async (formData: FormData) => {
-  const userData = Object.fromEntries(formData) as Pick<User, "password" | "email">;
-  // insert user to DB
-  
-  const salt = bcrypt.genSaltSync(12);
-  console.log(userData);
+export async function doRegisterAction (data: FormData) {
+  try {
 
-  userData.password = await bcrypt.hash(userData.password as string, salt);
+    if (!data.get('email') || !data.get('password')) {
+      return {
+        type: 'error',
+        message: 'Rekisteröinti epäonnistui',
+      }
+    }
+    // Get user data from the form
+    const userData = {
+      email: data.get('email') as string,
+      password: data.get('password') as string
+    }
 
-  console.log(userData);
+    // Check if the email exists 
+    const result = await checkEmailExists(userData.email);
+    // console.log('result', result);
 
-  const newUser = await createUser(userData);
-  console.log('newUser', newUser);
-  if (!newUser) {
-    throw new Error('User not created');
+    if (!result.available) {
+      return {
+        type: 'error',
+        message: 'Virheellinen tai jo olemassa oleva sähköpostiosoite.',
+      };
+    }
+
+    const salt = bcrypt.genSaltSync(12);
+
+    // Change password to a hashed one
+    userData.password = await bcrypt.hash(userData.password, salt);
+
+    // Insert user to DB
+    const newUser = await createUser(userData);
+    // console.log('newUser', newUser);
+
+    if (!newUser) {
+      return {
+        type: 'error',
+        message: 'Käyttäjää ei ole luotu',
+      };
+    }
+
+  } catch (e) {
+    console.error(e);
   }
-  // const response: UserResponse = {
-  //   message: 'user created',
-  //   user: newUser,
-  // };
-  // res.json(response);
-
-    
   
+  redirect('/login');
 
-}
+};
 
-export {doRegisterAction};

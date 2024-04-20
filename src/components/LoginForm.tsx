@@ -1,5 +1,5 @@
 'use client';
-import {login} from '@/lib/authActions';
+import {login, logout} from '@/lib/authActions';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 
@@ -12,15 +12,7 @@ const initialState = {
 
 export default  function LoginForm() {
   // const session = await getSession();
-
-  const logoutHandler = async () => {
-    // 'use server';
-    // await logout();
-    // redirect('/');
-    console.log('');
-  };
  
-  //const [loginState, loginFormAction] = useFormState(login, initialState);
   const [serverResponse, setServerResponse] = useState<{
     type: string,
     message: string,
@@ -35,6 +27,7 @@ export default  function LoginForm() {
 
   // if all fields are validated, call server action to login
   const onSubmit = async (data: FieldValues) => {
+
     // create formdata and add the form content to it
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => {
@@ -54,7 +47,6 @@ export default  function LoginForm() {
         {/* {!session ? ( */}
         {serverResponse?.message && <p className=' text-orange text-sm'>{serverResponse?.message}</p>}
         <form
-          // action={loginFormAction}
           onSubmit={handleSubmit(onSubmit)}
           className=' mt-1 '
         >
@@ -111,7 +103,7 @@ export default  function LoginForm() {
               id="password"
               placeholder=""
               className={`appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-8 focus:outline-none focus:border-blue-violet border-slate-300 ${
-                errors.email ? 'focus:border-orange' : ''
+                errors.password ? 'focus:border-orange' : ''
               }`} 
             />
           </div>
@@ -123,7 +115,7 @@ export default  function LoginForm() {
             className=" w-full mx-auto text-center bg-blue-violet hover:bg-blue-darker font-bold p-4 mt-6 rounded-lg text-xl focus:outline-none focus:shadow-outline"
 
           >
-            Login
+            {`${isSubmitting ? 'Kirjaudu sisään...' : 'Kirjaudu sisään'}`}
           </button>
         </form>
         {/* ) : ( */}

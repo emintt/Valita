@@ -27,7 +27,7 @@ export async function login(formData: FormData) {
       formData.get('password') as string,
       user.password,
     );
-    console.log(isPasswordCorrect);
+
     if (user.password && !isPasswordCorrect) {
       //throw new Error('Incorrect email or password');
       return {
@@ -64,7 +64,6 @@ export async function login(formData: FormData) {
     console.error(e);
   } 
 
-   
   revalidatePath('/');
   redirect('/');
 }

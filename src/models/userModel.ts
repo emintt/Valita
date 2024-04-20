@@ -1,5 +1,4 @@
-import { User } from '@sharedTypes/DBTypes';
-import {UserWithLevel, UserWithNoPassword} from '@/types/DBTypes';
+import {User, UserWithLevel, UserWithNoPassword} from '@/types/DBTypes';
 import {promisePool} from '@/lib/db';
 import {ResultSetHeader, RowDataPacket} from 'mysql2';
 
@@ -23,7 +22,6 @@ const getUserByEmail = async (email: string): Promise<UserWithLevel | null> => {
     const [rows] = await promisePool.execute<RowDataPacket[] & UserWithLevel[]>(
       sql,
     );
-    console.log(rows);
     if (rows.length === 0) {
       return null;
     }
@@ -54,7 +52,6 @@ const getUserById = async (id: number): Promise<UserWithLevel | null> => {
     const [rows] = await promisePool.execute<RowDataPacket[] & UserWithLevel[]>(
       sql,
     );
-    console.log(rows);
     if (rows.length === 0) {
       return null;
     }
@@ -76,7 +73,7 @@ const createUser = async (
   `,
       [user.email, user.password, 2],
     );
-
+    // console.log(result[0]);
     if (result[0].affectedRows === 0) {
       return null;
     }
@@ -89,4 +86,15 @@ const createUser = async (
   }
 };
 
-export {getUserByEmail, createUser};
+const checkEmailExists = async (email: string): Promise<{available: boolean}> => {
+  try {
+    // console.log('test email check', email);
+    const user = await getUserByEmail(email);
+    return {available: user ? false : true};
+  } catch (e) {
+    console.error('checkEmailExists error', (e as Error).message);
+    throw new Error((e as Error).message);
+  }
+};
+
+export {getUserByEmail, createUser, checkEmailExists};

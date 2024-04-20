@@ -9,7 +9,10 @@ const initialState = {
 
 
 export default function LogoutForm () {
-
+  const logoutHandler = async () => {
+    // call logout server action, redirect to home page
+    await logout();
+  };
   return (
     <>
       <form
