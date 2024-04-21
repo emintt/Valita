@@ -64,4 +64,23 @@ const PostCompany = async (
   }
 };
 
-export {fetchCompanyById, PostCompany};
+
+const getCompaniesBySearchParam = async (searchParam: string): Promise<Company[] | null> => {
+  try {
+    const sql = `SELECT * FROM Companies WHERE company_name LIKE ? LIMIT 10`; 
+    const params = ['%' + searchParam + '%'];
+    const [result] = await promisePool.execute<RowDataPacket[] & Company[]>(
+      sql,
+      params,
+    );
+    if (result.length === 0) {
+      return null;
+    }
+    return result;
+  } catch (e) {
+    console.error('fetch company error', (e as Error).message);
+    throw new Error((e as Error).message);
+  }
+};
+
+export {fetchCompanyById, PostCompany, getCompaniesBySearchParam};

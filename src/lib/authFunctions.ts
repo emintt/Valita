@@ -21,7 +21,7 @@ export function updateSession(request: NextRequest) {
     process.env.JWT_SECRET as string,
   ) as TokenContent;
   console.log('parse', parsed);
-  const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
+  const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
   const res = NextResponse.next();
   res.cookies.set({
     name: 'session',

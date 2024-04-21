@@ -51,4 +51,6 @@ const postPost = async (
   }
 };
 
-export {fetchAllPost, postPost};
+
+
+export {fetchAllPost, postPost, };
