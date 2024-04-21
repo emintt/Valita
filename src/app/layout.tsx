@@ -2,7 +2,7 @@ import type {Metadata} from 'next';
 import {Almarai, Inter} from 'next/font/google';
 import './globals.css';
 import NavBar from '@/components/NavBar';
-import { getSession } from '@/lib/authActions';
+import { getSession } from '@/lib/authFunctions';
 
 const inter = Inter({subsets: ['latin']});
 const almarai = Almarai({
@@ -22,6 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const tokenContent = getSession();
+  console.log(tokenContent);
   return (
     <html lang="fi">
       <body className={inter.className}>

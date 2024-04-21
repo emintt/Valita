@@ -74,37 +74,8 @@ export async function logout() {
   redirect('/');
 }
 
-export async function getSession(): Promise<TokenContent | null> {
-  const session = cookies().get('session')?.value;
-  if (!session) return null;
-  return jwt.verify(session, process.env.JWT_SECRET as string) as TokenContent;
-}
 
-export async function updateSession(request: NextRequest) {
-  const session = request.cookies.get('session')?.value;
-  if (!session) return;
 
-  // Refresh the session so it doesn't expire
-  const parsed = jwt.verify(
-    session,
-    process.env.JWT_SECRET as string,
-  ) as TokenContent;
-  const expires = new Date(Date.now() + 10 * 1000);
-  const res = NextResponse.next();
-  res.cookies.set({
-    name: 'session',
-    value: jwt.sign(parsed, process.env.JWT_SECRET as string, {
-      expiresIn: '1h',
-    }),
-    httpOnly: true,
-    expires: expires,
-  });
-  return res;
-};
 
-export async function requireAuth() {
-  const session = await getSession();
-  if (!session?.user_id) {
-    redirect('/');
-  }
-}
+
+

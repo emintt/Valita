@@ -1,6 +1,9 @@
+import { getSession } from '@/lib/authFunctions';
 import Link from 'next/link';
 
 const NavBar = ({font}: {font: string}) => {
+  const tokenContent = getSession();
+  console.log(tokenContent);
   return (
     <nav className="flex items-center justify-end flex-wrap bg-white py-2 px-4 tracking-wider border-b border-gray-200">
       <div className="flex items-center flex-shrink-0 text-white mr-auto">
@@ -48,6 +51,7 @@ const NavBar = ({font}: {font: string}) => {
               Haku
             </Link>
           </li>
+          {tokenContent && (
           <li className="lg:mr-4">
             <Link
               href="/create"
@@ -56,7 +60,7 @@ const NavBar = ({font}: {font: string}) => {
               Luo julkaisu
             </Link>
           </li>
-
+          )}
           <li className="lg:mr-4">
             <Link
               href="/register"
