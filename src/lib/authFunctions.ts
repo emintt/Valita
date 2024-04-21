@@ -10,8 +10,9 @@ export function getSession(): TokenContent | null {
   return jwt.verify(session, process.env.JWT_SECRET as string) as TokenContent;
 }
 
-export async function updateSession(request: NextRequest) {
+export function updateSession(request: NextRequest) {
   const session = request.cookies.get('session')?.value;
+  console.log(session);
   if (!session) return;
 
   // Refresh the session so it doesn't expire
@@ -19,12 +20,13 @@ export async function updateSession(request: NextRequest) {
     session,
     process.env.JWT_SECRET as string,
   ) as TokenContent;
-  const expires = new Date(Date.now() + 10 * 1000);
+  console.log('parse', parsed);
+  const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
   const res = NextResponse.next();
   res.cookies.set({
     name: 'session',
     value: jwt.sign(parsed, process.env.JWT_SECRET as string, {
-      expiresIn: '1h',
+      expiresIn: '24h',
     }),
     httpOnly: true,
     expires: expires,

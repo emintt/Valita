@@ -21,8 +21,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const tokenContent = getSession();
-  console.log(tokenContent);
+
   return (
     <html lang="fi">
       <body className={inter.className}>

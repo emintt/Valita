@@ -1,9 +1,11 @@
+import { requireAuth } from '@/lib/authFunctions';
 import {postPost} from '@/models/postModels';
 import {Post} from '@/types/DBTypes';
 import {NextRequest, NextResponse} from 'next/server';
 import {stringify} from 'querystring';
 
 export async function POST(request: NextRequest) {
+  requireAuth();
   try {
     // get the form data from the request
     const formData = await request.formData();

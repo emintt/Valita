@@ -3,7 +3,6 @@ import Link from 'next/link';
 
 const NavBar = ({font}: {font: string}) => {
   const tokenContent = getSession();
-  console.log(tokenContent);
   return (
     <nav className="flex items-center justify-end flex-wrap bg-white py-2 px-4 tracking-wider border-b border-gray-200">
       <div className="flex items-center flex-shrink-0 text-white mr-auto">
