@@ -1,5 +1,6 @@
-export default async function TicketDetails({ params }) {
-  const id = params.id
+export default async function TicketDetails({ params } : { params: { id: string }}) {
+  const id = params.id;
+  console.log(params);
   // const = await getTicket(params.id)
 
   return (

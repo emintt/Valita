@@ -55,11 +55,11 @@ export async function login(formData: FormData) {
 
     // Create the session
     // 7 * 24 * 60 * 60 * 1000 = 604800000 = 7 days
-    const expires = new Date(Date.now() + 604800000);
+    const expires = Date.now() + 604800000;
     console.log('exp', expires);
     console.log('now', new Date(Date.now()));
     const session = jwt.sign(tokenContent, process.env.JWT_SECRET, {
-      expiresIn: '7d',
+      expiresIn: '7 days',
     });
 
     // Save the session in a cookie

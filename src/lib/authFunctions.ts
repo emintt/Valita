@@ -43,6 +43,6 @@ export function requireAuth() {
   const session = getSession();
   // console.log('session at requireauth', session);
   if (!session?.user_id) {
-    redirect('/');
+    redirect('/login');
   }
 }
