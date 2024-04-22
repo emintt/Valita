@@ -1,8 +1,9 @@
 import { getCompaniesBySearchParam } from "@/models/companyModels";
+import { Company } from "@/types/DBTypes";
 import { NextRequest, NextResponse } from "next/server";
 
 // Search company by name
-export async function GET(request: NextRequest) {
+export async function GET(request: NextRequest): Promise<Company[] | null> {
   // parse the query parameters from the URL of incoming request
   const { searchParams } = new URL(request.url);
   const search = searchParams.get('q');
@@ -25,6 +26,6 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  return NextResponse.json({data: companyResponse});
+  return NextResponse.json({companyResponse});
 
 };

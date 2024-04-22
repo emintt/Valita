@@ -17,16 +17,19 @@ export async function login(formData: FormData) {
       // throw new Error('Incorrect email or password');
       return {
         type: 'error',
-        message: 'Virheellinen sähköpostiosoite tai salasana',
+        message: 'Virheellinen sähköpostiosoite tai salasana!',
       };
     }
-
+    console.log('user', user);
   
     // compare password
     const isPasswordCorrect = bcrypt.compareSync(
       formData.get('password') as string,
       user.password,
     );
+    console.log(formData.get('password') as string);
+    console.log(user.password);
+    console.log('ispasswordcorrect', isPasswordCorrect);
 
     if (user.password && !isPasswordCorrect) {
       //throw new Error('Incorrect email or password');
@@ -51,9 +54,10 @@ export async function login(formData: FormData) {
     };
 
     // Create the session
-    const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+    const expires = new Date(Date.now() + 604800);
+    console.log('exp', expires);
     const session = jwt.sign(tokenContent, process.env.JWT_SECRET, {
-      expiresIn: '1h',
+      expiresIn: '7d',
     });
 
     // Save the session in a cookie

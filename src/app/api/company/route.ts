@@ -1,7 +1,5 @@
 import {PostCompany} from '@/models/companyModels';
-import {Calligraffitti} from 'next/font/google';
 import {NextRequest, NextResponse} from 'next/server';
-import {stringify} from 'querystring';
 
 export async function POST(request: NextRequest) {
   try {

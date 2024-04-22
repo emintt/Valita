@@ -32,7 +32,6 @@ export async function doRegisterAction (data: FormData) {
     }
 
     const salt = bcrypt.genSaltSync(12);
-
     // Change password to a hashed one
     userData.password = await bcrypt.hash(userData.password, salt);
 

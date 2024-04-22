@@ -46,3 +46,8 @@ export async function POST(request: NextRequest) {
     return new NextResponse((error as Error).message, {status: 500});
   }
 }
+
+export async function GET(request: NextRequest) {
+
+  
+}

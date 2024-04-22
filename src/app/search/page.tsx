@@ -11,7 +11,7 @@ export default function Search () {
         <SearchBox/>
       </div>
       <div>
-        <h2>Julkaisut</h2>
+        <h2>Haku tulokset</h2>
         <PostList />
       </div>
     </>

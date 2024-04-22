@@ -6,13 +6,16 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export function getSession(): TokenContent | null {
   const session = cookies().get('session')?.value;
+  console.log('session', session);
   if (!session) return null;
-  return jwt.verify(session, process.env.JWT_SECRET as string) as TokenContent;
+  const result = jwt.verify(session, process.env.JWT_SECRET as string) as TokenContent;
+  console.log(result);
+   return null;
 }
 
 export function updateSession(request: NextRequest) {
   const session = request.cookies.get('session')?.value;
-  console.log(session);
+  console.log('updatSession, session', session);
   if (!session) return;
 
   // Refresh the session so it doesn't expire
@@ -21,12 +24,13 @@ export function updateSession(request: NextRequest) {
     process.env.JWT_SECRET as string,
   ) as TokenContent;
   console.log('parse', parsed);
-  const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+  // 7 * 24 * 60 * 60 * 1000
+  const expires = new Date(Date.now() + 604800000);
   const res = NextResponse.next();
   res.cookies.set({
     name: 'session',
     value: jwt.sign(parsed, process.env.JWT_SECRET as string, {
-      expiresIn: '24h',
+      expiresIn: '7d',
     }),
     httpOnly: true,
     expires: expires,
