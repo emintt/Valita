@@ -73,7 +73,7 @@ const NavBar = ({font}: {font: string}) => {
               href="/login"
               className="block lg:inline-block lg:mt-0 text-slate-950 font-semibold p-3 hover:text-purple  "
             >
-              Kijaudu sisään
+              Kirjaudu sisään
             </Link>
           </li>
         </ul>

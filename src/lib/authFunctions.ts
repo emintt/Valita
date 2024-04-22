@@ -6,11 +6,10 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export function getSession(): TokenContent | null {
   const session = cookies().get('session')?.value;
-  console.log('session', session);
+  // console.log('session at getSession', session);
   if (!session) return null;
-  const result = jwt.verify(session, process.env.JWT_SECRET as string) as TokenContent;
-  console.log(result);
-   return null;
+  return jwt.verify(session, process.env.JWT_SECRET as string) as TokenContent;
+  
 }
 
 export function updateSession(request: NextRequest) {
@@ -42,6 +41,7 @@ export function updateSession(request: NextRequest) {
 // If there is no session found, redirect to home page
 export function requireAuth() {
   const session = getSession();
+  // console.log('session at requireauth', session);
   if (!session?.user_id) {
     redirect('/');
   }
