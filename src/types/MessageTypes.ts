@@ -1,3 +1,5 @@
+import { Company } from "./DBTypes";
+
 type MessageResponse = {
   message: string;
 };
@@ -10,4 +12,9 @@ type CompanyResponse = MessageResponse & {
   company_id: number;
 };
 
-export type {MessageResponse, ErrorResponse, CompanyResponse};
+type SearchResponse = {
+  message: string;
+  data?: Company[] | null;
+}
+
+export type {MessageResponse, ErrorResponse, CompanyResponse, SearchResponse};
