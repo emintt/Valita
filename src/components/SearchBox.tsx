@@ -16,16 +16,16 @@ const SearchBox = () => {
   // When the form is submitted, redirect to the search result page
   const onSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log('search field string at search box', searchFieldString);
+    // console.log('search field string at search box', searchFieldString);
     router.push(`/search?q=${searchFieldString}`);
   }
 
   return (
-    <form onSubmit={onSubmitHandler} className="flex justify-center w-2/3">
+    <form onSubmit={onSubmitHandler} className="flex justify-center w-full">
       <input
         value={searchFieldString}
         onChange={onChangeHandler}
-        className="border rounded-lg w-full py-1 px-5 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-300"
+        className="border rounded-lg w-full py-3 px-1 sm:py-3 sm:px-3 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-600"
         type='search'
         placeholder='Hae yritys'
       />
