@@ -1,5 +1,6 @@
 import { fetchCompanyById } from '@/models/companyModels';
 import { fetchAllPost } from '@/models/postModels';
+import Link from 'next/link';
 
 const PostList = async () => {
   const postList = await fetchAllPost();
@@ -25,9 +26,9 @@ const PostList = async () => {
           postListWithCompanyName.map((post, index) => (
             <li key={index} className=" border-slate-950 p-2 mb-4">
               <h3>
-                <a href={`/${post.post_id}`} target="_self">
+                <Link href={`/${post.post_id}`} target="_self">
                   {post.company_name}
-                </a>
+                </Link>
               </h3>
               <p>{new Date(post.created_at).toLocaleDateString('fi-FI')}</p>
               <h4>{post.title}</h4>
