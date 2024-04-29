@@ -161,17 +161,17 @@ const PostForm = () => {
                 htmlFor="file"
                 className="block font-medium"
               >
-                Media (TULOSSA)
+                Media
               </label>
               <input
                 {
                   ...register("file",  {
-                    required:"File is required",
+                    // required:"File is required",
                     validate: (value) => {
-                      if (value && !value[0].type.includes('image')) {
+                      if (value && value[0] && !value[0].type.includes('image')) {
                           return 'Invalid file format. Only image files are allowed.';
                       }
-                      if (value && value[0].size > 10000000) {
+                      if (value && value[0] && value[0].size > 10000000) {
                         return 'Invalid file size. Only files under 10MB are allowed';
                       }
                       return true;
