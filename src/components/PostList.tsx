@@ -38,6 +38,7 @@ const PostList = async () => {
                 // <Image src={post.filename} alt="post image" width="400" height="200"></Image>
                 <p>POST FILE NAME{post.filename}</p>
               )}
+              <img src={`${process.env.UPLOAD_URL}${post.filename}`} alt="" />
             </li>
           ))}
       </ul>
