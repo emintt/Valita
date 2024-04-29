@@ -17,4 +17,12 @@ type SearchResponse = {
   data?: Company[] | null;
 }
 
-export type {MessageResponse, ErrorResponse, CompanyResponse, SearchResponse};
+type UploadResponse = MessageResponse & {
+  data: {
+      filename: string;
+      media_type: string;
+      filesize: number;
+  };
+}
+
+export type { MessageResponse, ErrorResponse, CompanyResponse, SearchResponse, UploadResponse };

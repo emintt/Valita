@@ -30,9 +30,9 @@ CREATE TABLE Posts
   post_id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
   company_id INT NOT NULL,
-  filename VARCHAR(255) NOT NULL,
-  filesize INT NOT NULL,
-  media_type VARCHAR(255) NOT NULL,
+  filename VARCHAR(255) DEFAULT NULL,
+  filesize INT DEFAULT NULL,
+  media_type VARCHAR(255) DEFAULT NULL,
   title VARCHAR(255) NOT NULL,
   content TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -65,20 +65,20 @@ CREATE TABLE Likes
 -- Insert the sample data 
 INSERT INTO UserLevels (level_name) VALUES ('Admin'), ('User');
 
-INSERT INTO Users (email, password, user_level_id) 
-VALUES ('denkani@example.com', '12345', 2),
-  ('mansumi@example.com', '12345', 2),
-  ('papu@example.com', '12345', 2),
-  ('minttu@example.com', '12345', 2);
+-- INSERT INTO Users (email, password, user_level_id) 
+-- VALUES ('denkani@example.com', '12345', 2),
+--   ('mansumi@example.com', '12345', 2),
+--   ('papu@example.com', '12345', 2),
+--   ('minttu@example.com', '12345', 2);
 
 INSERT INTO Companies (company_name) 
 VALUES ('K-Kauppa Postitalo'), 
   ('Musiikkitalo'), 
   ('UMH Finland');
 
-INSERT INTO Posts (user_id, company_id, filename, filesize, media_type, title, content) 
-VALUES (1, 1, 'sunset.jpg', 1024, 'image/jpeg', 'Testi title', 'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'),
-  (2, 2, 'sunset.jpg', 1024, 'image/jpeg', 'Testi title', 'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
-  (3, 3, 'sunset.jpg', 1024, 'image/jpeg', 'Jotain title', ' It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum');
+-- INSERT INTO Posts (user_id, company_id, filename, filesize, media_type, title, content) 
+-- VALUES (1, 1, 'sunset.jpg', 1024, 'image/jpeg', 'Testi title', 'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'),
+--   (2, 2, 'sunset.jpg', 1024, 'image/jpeg', 'Testi title', 'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
+--   (3, 3, 'sunset.jpg', 1024, 'image/jpeg', 'Jotain title', ' It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum');
 
 

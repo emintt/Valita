@@ -1,13 +1,14 @@
 'use client';
-import {fetchData} from '@/lib/functions';
-import {CompanyResponse, MessageResponse} from '@/types/MessageTypes';
-import {useRouter} from 'next/navigation';
-import {FieldValues, useForm} from 'react-hook-form';
+import { fetchData } from '@/lib/functions';
+import { CompanyResponse, MessageResponse } from '@/types/MessageTypes';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
 
 type PostFormField = {
   company_name: string;
   title: string;
   content: string;
+  file?: File;
 };
 
 const PostForm = () => {
@@ -21,7 +22,11 @@ const PostForm = () => {
   } = useForm<PostFormField>();
 
   const onSubmit = async (data: PostFormField) => {
-    // console.log('data', data);
+    console.log('data', data);
+    // (data.file return a file list object)
+    if (data.file) {
+      data.file = data.file[0];
+    }
     try {
       // create form data and add the form content to it
       const formData = new FormData();
@@ -46,7 +51,6 @@ const PostForm = () => {
         throw new Error('Error posting company name');
       }
 
-      // TODO: fix the ERROR
       formData.append('company_id', String(companyResult.company_id));
       // console.log(formData.get('company_id'));
 
@@ -55,7 +59,8 @@ const PostForm = () => {
         method: 'POST',
         body: formData,
       };
-      await fetchData<MessageResponse>('/api/post', options);
+      const result = await fetchData<MessageResponse>('/api/post', options);
+      console.log(result);
 
       router.push('/');
       router.refresh();
@@ -158,17 +163,34 @@ const PostForm = () => {
               >
                 Media (TULOSSA)
               </label>
-              {/* <input
+              <input
+                {
+                  ...register("file",  {
+                    required:"File is required",
+                    validate: (value) => {
+                      if (value && !value[0].type.includes('image')) {
+                          return 'Invalid file format. Only image files are allowed.';
+                      }
+                      if (value && value[0].size > 10000000) {
+                        return 'Invalid file size. Only files under 10MB are allowed';
+                      }
+                      return true;
+                  }
+                  })
+                }
                 className=""
                 id="file_input"
                 type="file"
                 name="file"
-              /> */}
+              />
             </div>
+            {errors.file && (
+              <p className=" text-orange text-sm">{`${errors.file.message}`}</p>
+            )}
           <div className="flex">
             <input 
               type="submit" 
-              className="  w-full sm:w-1/3 mx-auto text-center bg-blue-violet hover:bg-blue-darker text-white p-3 mt-2 rounded-lg text-xl"
+              className="  w-full sm:w-2/3 mx-auto text-center bg-blue-violet hover:bg-blue-darker text-white p-3 mt-2 rounded-lg text-xl"
               value={`${isSubmitting ? 'Julkaistaan...' : 'Julkaista'}`} />
           </div>
         </form>

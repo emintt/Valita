@@ -1,5 +1,6 @@
 import { fetchCompanyById } from '@/models/companyModels';
 import { fetchAllPost } from '@/models/postModels';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const PostList = async () => {
@@ -33,6 +34,10 @@ const PostList = async () => {
               <p>{new Date(post.created_at).toLocaleDateString('fi-FI')}</p>
               <h4>{post.title}</h4>
               <p>{post.content}</p>
+              {post.filename && (
+                // <Image src={post.filename} alt="post image" width="400" height="200"></Image>
+                <p>POST FILE NAME{post.filename}</p>
+              )}
             </li>
           ))}
       </ul>

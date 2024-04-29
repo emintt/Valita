@@ -2,9 +2,9 @@ type Post = {
   post_id: number;
   user_id: number;
   company_id: number;
-  filename: string;
-  filesize: number;
-  media_type: string;
+  filename: string | null;
+  filesize: number | null;
+  media_type: string | null;
   title: string;
   content: string;
   created_at: Date;

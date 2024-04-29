@@ -1,17 +1,20 @@
 import { requireAuth } from '@/lib/authFunctions';
+import { fetchData } from '@/lib/functions';
 import {postPost} from '@/models/postModels';
 import {Post} from '@/types/DBTypes';
+import { UploadResponse } from '@/types/MessageTypes';
+import { cookies } from 'next/headers';
 import {NextRequest, NextResponse} from 'next/server';
 import {stringify} from 'querystring';
 
 export async function POST(request: NextRequest) {
   requireAuth();
   try {
-    // get the form data from the request
+    // Get the form data from the request
     const formData = await request.formData();
 
-    // add post to database
-    // get company_name, title, content from the form data
+    // Add post to database
+    // Get company_name, title, content from the form data
     if (
       !formData.get('title') ||
       !formData.get('company_name') ||
@@ -26,24 +29,67 @@ export async function POST(request: NextRequest) {
       return NextResponse.json('Can not create company');
     }
 
+    let uploadResult: UploadResponse = {
+      message: '',
+      data: {
+          filename: '',
+          media_type: '',
+          filesize: 0,
+      },
+    }
+
+    // If formData has file, post it to upload server
+    if (formData.has('file')) {
+      // Get the token from the cookie
+      const token = cookies().get("session")?.value;
+
+      console.log(process.env.UPLOAD_SERVER as string);
+      uploadResult = await fetchData<UploadResponse>(
+        (process.env.UPLOAD_SERVER as string) + '/upload',
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        },
+      );
+      
+      console.log('file upload result', uploadResult);
+
+      // If the upload response is valid, add the image to the database
+      if (!uploadResult.data) {
+        return new NextResponse('Error uploading post', {status: 500});
+      }
+    }
+
+    
+    // Create post data object to save to DB
     const postData: Omit<Post, 'post_id' | 'created_at'> = {
       title: formData.get('title') as string,
       company_id: Number(formData.get('company_id') as string),
       content: formData.get('content') as string,
-      filename: 'jbffjdbfcjknlj.kuva',
-      filesize: 1634,
-      media_type: 'image',
+      filename: uploadResult.data.filename || null,
+      filesize: uploadResult.data.filesize || null,
+      media_type: uploadResult.data.media_type || null,
       user_id: 1,
     };
-    await postPost(postData);
+
+    // Insert to DB
+    const postResult = await postPost(postData);
+    
+    if (!postResult) {
+      return new NextResponse('Error adding post to DB', {status: 500});
+    }
+    
     return NextResponse.json(
       stringify({
         message: 'Post added to database',
       }),
     );
   } catch (error) {
-    console.error((error as Error).message, error);
-    return new NextResponse((error as Error).message, {status: 500});
+    console.error((error as Error).cause, (error as Error).stack, (error as Error).message, (error as Error).name);
+    return NextResponse.json('Error creating post', {status: 500});
   }
 }
 
