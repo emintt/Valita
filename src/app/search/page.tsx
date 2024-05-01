@@ -47,7 +47,7 @@ export default function Search () {
           result.data.map((company) => {
             return (
               <div key={company.company_id} className=" flex p-1 gap-4 my-1 rounded-lg border hover:bg-[#F3EBFD] hover:transition-all hover:duration-300">
-                <li className=" text-md font-semibold w-full hover:ml-1 hover:transition-all hover:duration-300" >
+                <li data-cy="search-result" className=" text-md font-semibold w-full hover:ml-1 hover:transition-all hover:duration-300" >
                   <Link
                     href={`/company/${company.company_id}`}
                     className="block lg:inline-block lg:mt-0 text-slate-950 font-semibold p-3 "

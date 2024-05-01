@@ -77,7 +77,7 @@ export default  function LoginForm() {
             />
           </div>
           {errors.email && (
-              <p className=" text-orange-darker text-sm">{`${errors.email.message}`}</p>
+              <p data-cy="error-email" className=" text-orange-darker text-sm">{`${errors.email.message}`}</p>
             )}
           <div className=" mt-3 mb-1">
             <label
@@ -108,10 +108,11 @@ export default  function LoginForm() {
             />
           </div>
           {errors.password && (
-              <p className=" text-orange-darker text-sm">{`${errors.password.message}`}</p>
+              <p data-cy="error-password" className=" text-orange-darker text-sm">{`${errors.password.message}`}</p>
             )}
           <button
             type="submit"
+            data-cy="submit"
             className=" w-full mx-auto text-center bg-blue-violet hover:bg-blue-darker font-bold p-4 mt-6 rounded-lg text-xl focus:outline-none focus:shadow-outline"
 
           >

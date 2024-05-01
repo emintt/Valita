@@ -28,6 +28,7 @@ const SearchBox = () => {
         className="border rounded-lg w-full py-3 px-1 sm:py-3 sm:px-3 text-gray-800 focus:outline-none focus:border-blue-violet border-slate-600"
         type='search'
         placeholder='Hae yritys'
+        data-cy="search"
       />
       <ul>
 
