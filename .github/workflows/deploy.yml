@@ -4,7 +4,7 @@
 # on:
 #   # Triggers the workflow on push or pull request events but only for the main branch
 #   push:
-#     # branches: [ main ]
+#     branches: [main]
 
 # # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 # jobs:
@@ -35,5 +35,7 @@
 #             npm run test
 #             # generate apidocs
 #             npm run apidoc
+#             # build the app
+#             npm run build
 #             # finally, restart the application using the updated version of it
-#             # pm2 restart Valita
+#             pm2 restart valita-app
