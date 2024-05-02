@@ -9,6 +9,7 @@
     "test": "vitest",
     "test:unit": "vitest --environment jsdom",
     "cypress:open": "cypress open",
+    "cypress": "cypress run",
     "lint": "next lint",
     "format": "prettier --check .",
     "format:fix": "prettier --write --list-different ."
