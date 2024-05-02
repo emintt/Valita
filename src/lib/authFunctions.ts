@@ -22,7 +22,6 @@ export function updateSession(request: NextRequest) {
     session,
     process.env.JWT_SECRET as string,
   ) as TokenContent;
-  console.log('parse', parsed);
   // 7 * 24 * 60 * 60 * 1000
   const expires = new Date(Date.now() + 604800000);
   const res = NextResponse.next();

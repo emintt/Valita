@@ -1,10 +1,12 @@
+import { inter } from '@/app/layout';
 import { getSession } from '@/lib/authFunctions';
 import Link from 'next/link';
 
-const NavBar = ({font}: {font: string}) => {
+
+const NavBar = () => {
   const tokenContent = getSession();
   return (
-    <nav className=" font-serif flex items-center justify-end flex-wrap bg-white py-2 px-4 border-b border-gray-200">
+<nav className={` flex items-center justify-end flex-wrap bg-white py-2 px-4 border-b border-gray-200 ${inter.className}`}>
       <div className="flex items-center flex-shrink-0 text-white mr-auto">
         <Link href="/">
           <span className="font-semibold text-3xl tracking-tight text-blue-violet">

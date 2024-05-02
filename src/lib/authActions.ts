@@ -27,8 +27,7 @@ export async function login(formData: FormData) {
       formData.get('password') as string,
       user.password,
     );
-    console.log(formData.get('password') as string);
-    console.log(user.password);
+
     console.log('ispasswordcorrect', isPasswordCorrect);
 
     if (user.password && !isPasswordCorrect) {

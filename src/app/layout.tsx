@@ -3,10 +3,12 @@ import {Almarai, Inter, Noto_Sans} from 'next/font/google';
 import './globals.css';
 import NavBar from '@/components/NavBar';
 
-const inter = Inter({subsets: ['latin'],  display: 'swap',});
+export const inter = Inter({
+  subsets: ['latin'],  
+  display: 'swap'
+});
 const notoSans = Noto_Sans({
   subsets: ['latin'],
-  weight: '700',
   display: 'swap'
 });
 export const metadata: Metadata = {
@@ -25,9 +27,9 @@ export default function RootLayout({
 
   return (
     <html lang="fi">
-      <body className={inter.className}>
-        <NavBar font={notoSans.className} />
-        <main className="flex min-h-screen flex-col items-center xs:p-2 bg-gradient-to-br from-white to-light-orange via-light-blue">
+      <body className={notoSans.className}>
+        <NavBar />
+        <main className="flex min-h-screen flex-col items-center xs:p-2 bg-purple">
           {children}
         </main>
       </body>

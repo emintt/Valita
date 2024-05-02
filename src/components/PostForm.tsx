@@ -24,7 +24,7 @@ const PostForm = () => {
   } = useForm<PostFormField>();
 
   const onSubmit = async (data: PostFormField) => {
-    console.log('data', data);
+    // console.log('data', data);
     // (data.file return a file list object)
     if (data.file) {
       const file = (data.file as FileList)[0];

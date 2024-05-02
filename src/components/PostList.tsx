@@ -2,6 +2,10 @@ import { fetchCompanyById } from '@/models/companyModels';
 import { fetchAllPost } from '@/models/postModels';
 import Image from 'next/image';
 import Link from 'next/link';
+import { AiOutlineLike } from "react-icons/ai";
+import { FaRegComment } from "react-icons/fa";
+
+
 
 const PostList = async () => {
   const postList = await fetchAllPost();
@@ -25,20 +29,39 @@ const PostList = async () => {
       <ul>
         {postListWithCompanyName &&
           postListWithCompanyName.map((post, index) => (
-            <li key={index} className=" border-slate-950 p-2 mb-4">
-              <h3>
-                <Link href={`/${post.post_id}`} target="_self">
-                  {post.company_name}
-                </Link>
-              </h3>
-              <p>{new Date(post.created_at).toLocaleDateString('fi-FI')}</p>
-              <h4>{post.title}</h4>
-              <p>{post.content}</p>
+            <li key={index} className="mb-1 bg-white border rounded-lg border-slate-300">
+              <div className=' p-4 sm:pl-8'>
+                <p className=" text-slate-700 text-sm">{' ' + new Date(post.created_at).toLocaleString('fi-FI')}</p>
+                <h3 className=' font-semibold text-lg pb-4'>
+                  <Link href={`/${post.post_id}`} target="_self">
+                    {post.company_name}
+                  </Link>
+                </h3>
+                <h4 className=" font-semibold">{post.title}</h4>
+                <p className=" py-1">{post.content}</p>
+              </div>
               {post.filename && (
                 // <Image src={post.filename} alt="post image" width="400" height="200"></Image>
-                <p>POST FILE NAME{post.filename}</p>
+                <div className='pb-2'>
+                  <Image 
+                    src={`${process.env.UPLOAD_URL}${post.filename}`} 
+                    alt="post image"
+                    width={680}
+                    height={425}
+                    style={{objectFit: "cover", width: "100%", height: "425px"}}
+                    priority={true}
+                  />
+                </div>
               )}
-              <img src={`${process.env.UPLOAD_URL}${post.filename}`} alt="" />
+                             
+              <div className=" py-2 border-t px-4 sm:pl-8 flex justify-start items-center">
+                <AiOutlineLike className=' inline-block text-lg ' size={20} color={"blue"} />{' '}
+                <span className='mr-4'>1</span>
+                <FaRegComment className=' inline-block' size={18} color={"blue"} />{' '}
+                <span>1</span>
+              </div>
+              
+
             </li>
           ))}
       </ul>

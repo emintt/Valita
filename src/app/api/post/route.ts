@@ -41,11 +41,10 @@ export async function POST(request: NextRequest) {
     // If formData has file, post it to upload server
     console.log('formdata file', formData.get('file'), typeof(formData.get('file')));
     if (formData.get('file') && formData.get('file') !== 'undefined') {
-      console.log('form data file', formData.get('file'));
+      // console.log('form data file', formData.get('file'));
       // Get the token from the cookie
       const token = cookies().get("session")?.value;
 
-      console.log(process.env.UPLOAD_SERVER as string);
       uploadResult = await fetchData<UploadResponse>(
         (process.env.UPLOAD_SERVER as string) + '/upload',
         {
