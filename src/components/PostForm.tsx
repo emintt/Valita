@@ -8,7 +8,7 @@ type PostFormField = {
   company_name: string;
   title: string;
   content: string;
-  file?: File;
+  file?: FileList | undefined | File;
 };
 
 const PostForm = () => {
@@ -25,14 +25,17 @@ const PostForm = () => {
     console.log('data', data);
     // (data.file return a file list object)
     if (data.file) {
-      data.file = data.file[0];
+      const file = (data.file as FileList)[0];
+      data.file = file;
     }
     try {
       // create form data and add the form content to it
       const formData = new FormData();
-      Object.entries(data).forEach(([key, value]) => {
-        formData.append(key, value);
-      });
+      
+      formData.append("company_name", data.company_name);
+      formData.append("title", data.title);
+      formData.append("content", data.content);
+      formData.append("file", data.file as File);
 
       // post company name to database
       const companyData = {
@@ -168,10 +171,10 @@ const PostForm = () => {
                   ...register("file",  {
                     // required:"File is required",
                     validate: (value) => {
-                      if (value && value[0] && !value[0].type.includes('image')) {
+                      if (value && (value as FileList)[0] && !(value as FileList)[0].type.includes('image')) {
                           return 'Invalid file format. Only image files are allowed.';
                       }
-                      if (value && value[0] && value[0].size > 10000000) {
+                      if (value && (value as FileList)[0] && (value as FileList)[0].size > 10000000) {
                         return 'Invalid file size. Only files under 10MB are allowed';
                       }
                       return true;
