@@ -75,7 +75,7 @@ export default  function RegisterForm () {
               name="email"
               id="register-email"
               className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-8 focus:outline-none focus:border-blue-violet border-slate-300"
-
+              autoComplete="on"
             />
           </div>
           {errors.email && (
@@ -101,6 +101,7 @@ export default  function RegisterForm () {
               type="password"
               name="password"
               id="resgister-password"
+              autoComplete="off"
               className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-8 focus:outline-none focus:border-blue-violet border-slate-300"
             />
           </div>

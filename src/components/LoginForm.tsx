@@ -70,7 +70,7 @@ export default  function LoginForm() {
               type="text"
               name="email"
               id="email"
-              placeholder=""
+              autoComplete="on"
               className={`appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-8 focus:outline-none focus:border-blue-violet border-slate-300 ${
                 errors.email ? 'focus:border-orange' : ''
               }`} 
@@ -101,7 +101,7 @@ export default  function LoginForm() {
               type="password"
               name="password"
               id="password"
-              placeholder=""
+              autoComplete="off"
               className={`appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-8 focus:outline-none focus:border-blue-violet border-slate-300 ${
                 errors.password ? 'focus:border-orange' : ''
               }`} 

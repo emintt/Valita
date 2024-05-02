@@ -31,7 +31,7 @@ const PostForm = () => {
     try {
       // create form data and add the form content to it
       const formData = new FormData();
-      
+
       formData.append("company_name", data.company_name);
       formData.append("title", data.title);
       formData.append("content", data.content);
@@ -95,6 +95,7 @@ const PostForm = () => {
                 })
               }
               type="text"
+              autoComplete="on"
               name="company_name"
               id="company_name"
               className=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-8 focus:outline-none focus:border-blue-violet border-slate-300"
@@ -122,6 +123,7 @@ const PostForm = () => {
                 })
               }
               type="text"
+              autoComplete="off"
               name="title"
               id="title"
               className=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-8 focus:outline-none focus:border-blue-violet border-slate-300 "
@@ -149,6 +151,7 @@ const PostForm = () => {
               }
               cols={30}
               rows= {5}
+              autoComplete="off"
               name="content"
               id="content"
               className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-8 focus:outline-none focus:border-blue-violet border-slate-300"
@@ -181,7 +184,7 @@ const PostForm = () => {
                   }
                   })
                 }
-                className=""
+                autoComplete="off"
                 id="file_input"
                 type="file"
                 name="file"
