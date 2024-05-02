@@ -3,6 +3,8 @@ import { fetchData } from '@/lib/functions';
 import { CompanyResponse, MessageResponse } from '@/types/MessageTypes';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import basePath from "../../next.config.mjs"
+
 
 type PostFormField = {
   company_name: string;

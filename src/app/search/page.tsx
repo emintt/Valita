@@ -2,6 +2,7 @@
 import SearchBox from "@/components/SearchBox";
 import { fetchData } from "@/lib/functions";
 import { Company } from "@/types/DBTypes";
+import basePath from "../../../next.config.mjs"
 import { SearchResponse } from "@/types/MessageTypes";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
