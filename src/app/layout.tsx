@@ -3,7 +3,7 @@ import {Almarai, Inter} from 'next/font/google';
 import './globals.css';
 import NavBar from '@/components/NavBar';
 
-const inter = Inter({subsets: ['latin']});
+const inter = Inter({subsets: ['latin'],  display: 'swap',});
 const almarai = Almarai({
   subsets: ['arabic'],
   weight: '700',
