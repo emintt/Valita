@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '/app',
-  assetPrefix: '/app',
+  basePath: '/valita',
+  assetPrefix: '/valita',
   images: {
     remotePatterns: [
       {
