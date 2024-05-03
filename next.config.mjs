@@ -11,7 +11,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'upload-server.northeurope.cloudapp.azure.com',
-        port: '3001',
+        port: '',
         pathname: '/uploads/**',
       },
       
