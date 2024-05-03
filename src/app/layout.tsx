@@ -1,16 +1,8 @@
 import type {Metadata} from 'next';
-import {Almarai, Inter, Noto_Sans} from 'next/font/google';
 import './globals.css';
 import NavBar from '@/components/NavBar';
+import { notoSans } from './fonts';
 
-export const inter = Inter({
-  subsets: ['latin'],  
-  display: 'swap'
-});
-const notoSans = Noto_Sans({
-  subsets: ['latin'],
-  display: 'swap'
-});
 export const metadata: Metadata = {
   title: 'Valita App',
   description: 'Anonyymisti palaute sovellus',

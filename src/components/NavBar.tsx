@@ -1,4 +1,4 @@
-import { inter } from '@/app/layout';
+import { inter } from '@/app/fonts';
 import { getSession } from '@/lib/authFunctions';
 import Link from 'next/link';
 
