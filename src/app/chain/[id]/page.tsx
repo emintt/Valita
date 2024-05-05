@@ -42,12 +42,10 @@ export default async function PostPage({ params } : { params: { id: string }}) {
               )}
               </div>
                              
-              <div className=" py-2 border-t px-4 sm:pl-8 flex justify-start items-center">
-                <AiOutlineLike className=' inline-block text-lg ' size={20} color={"blue"} />{' '}
-                <span className='mr-4'>1</span>
+              {/* <div className=" py-2 border-t px-4 sm:pl-8 flex justify-end items-center">
                 <FaRegComment className=' inline-block' size={18} color={"blue"}  fill={"blue"}/>{' '}
                 <span>1</span>
-              </div>
+              </div> */}
               
 
             </div>

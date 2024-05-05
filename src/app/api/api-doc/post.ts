@@ -75,5 +75,75 @@
  * @apiSuccess {Number} exp Token expiration time.
  */
 
+/**
+ * @api {Server Action} getPostWithCompanyNameAction Get post with company name by ID
+ * @apiName GetPostWithCompanyName
+ * @apiGroup Post
+ * 
+ * @apiDescription Retrieves a post with the associated company name by its ID.
+ * 
+ * @apiParam {String} id ID of the post.
+ * 
+ * @apiSuccess {Object} post Post object with associated company name.
+ * @apiSuccessExample {Object} Success-Response:
+ *     {
+ *       post_id: 1,
+ *       title: "Post title",
+ *       content: "Post content",
+ *       company_name: "Company A",
+ *       company_id: 1,
+ *       filename: "wbwjdbhfy.png",
+ *       fileisze: 6543,
+ *       media_type: "image/png",
+ *       created_at: "2024-05-05 16:46:22" 
+ *     }
+ * 
+ * @apiError (Error) InvalidId Invalid ID parameter.
+ * @apiErrorExample {Object} Invalid-Id-Response:
+ *     {
+ *       type: "error",
+ *       message: "Invalid id parameter"
+ *     }
+ * 
+ * @apiError (Error) ServerError Error fetching post.
+ * @apiErrorExample {Object} Server-Error-Response:
+ *     {
+ *       type: "error",
+ *       message: "Error fetching post"
+ *     }
+ */
+
+/**
+ * @api {Server Action} deletePostByIdAction Delete post by ID
+ * @apiName DeletePostById
+ * @apiGroup Post
+ * 
+ * @apiDescription Deletes a post by its ID.
+ * @apiUse AuthHeader
+ * 
+ * @apiParam {Number} id ID of the post to delete.
+ * 
+ * @apiSuccess {String} type Type of the response ('error' or 'success').
+ * @apiSuccess {String} message Response message.
+ * @apiSuccessExample {Object} Success-Response:
+ *     {
+ *       type: "success",
+ *       message: "Post deleted successfully"
+ *     }
+ * 
+ * @apiError (Error) InvalidId Invalid ID parameter.
+ * @apiErrorExample {Object} Invalid-Id-Response:
+ *     {
+ *       type: "error",
+ *       message: "Invalid id parameter"
+ *     }
+ * 
+ * @apiError (Error) ServerError Error deleting post or fetching user.
+ * @apiErrorExample {Object} Server-Error-Response:
+ *     {
+ *       type: "error",
+ *       message: "Error deleting post"
+ *     }
+ */
 
 
