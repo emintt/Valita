@@ -76,7 +76,7 @@ VALUES ('K-Kauppa Postitalo'),
   ('Musiikkitalo'), 
   ('UMH Finland');
 
-INSERT INTO companies (company_name) VALUES 
+INSERT INTO Companies (company_name) VALUES 
 ('S-market Kamppi'),
 ('S-market Hakaniemi'),
 ('S-market Töölöntori'),
