@@ -25,7 +25,7 @@
   ![SignOut](screenshots/signout.png)
 
 - Yrityksen hakeminen
-  ![Search](screenshots//search.png)
+  ![Search](screenshots/search.png)
 
 - Julkaisun luominen, kuva voi liittää julkaisuun valinnaisesti
   ![CreatePost](screenshots/create.png)
@@ -49,4 +49,3 @@
 ## Referenssit
 
 https://github.com/ilkkamtk/hybridisovellukset
-Inter
