@@ -35,7 +35,8 @@ const PostList = async () => {
         {postListWithCompanyName &&
           postListWithCompanyName.map((post, index) => (
             <li key={index} className="mb-1 bg-white border rounded-lg border-slate-300">
-              {token && ((token.level_name === "Admin") || (token.user_id === post.user_id)) && <DeleteButton postId={post.post_id} />}
+              {token && ((token.level_name === "Admin") || (token.user_id === post.user_id)) 
+                && <DeleteButton postId={post.post_id} />}
 
               <Link href={`/chain/${post.post_id}`} target="_self">
                 <div className=' p-4 sm:pl-8'>

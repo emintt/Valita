@@ -21,7 +21,8 @@ export default function RootLayout({
     <html lang="fi">
       <body className={notoSans.className}>
         <NavBar />
-        <main className="flex min-h-screen flex-col items-center xs:p-2 bg-[#9B5EF0]">
+        {/* bg-[#9B5EF0] */}
+        <main className="flex min-h-screen flex-col items-center xs:p-2 bg-gradient-to-br from-light-orange to-light-blue via-hwite">
           {children}
         </main>
       </body>

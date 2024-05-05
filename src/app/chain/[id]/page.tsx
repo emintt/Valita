@@ -6,9 +6,10 @@ import { AiOutlineLike } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 
 export default async function PostPage({ params } : { params: { id: string }}) {
+  console.log('postid', params.id);
 
   const post = await getPostWithCompanyNameAction(params.id) as PostWithCompanyName;
-  // console.log('post from page', post);
+  console.log('post from page', post);
   return (
     <>
       <section className=' flex flex-col min-h-screen relative w-full xs:max-w-md md:max-w-[680px] '>
@@ -18,7 +19,7 @@ export default async function PostPage({ params } : { params: { id: string }}) {
               <div className=' p-4 sm:pl-8'>
                 <p className=" text-slate-700 text-sm">{' ' + new Date(post.created_at).toLocaleString('fi-FI')}</p>
                 <h3 className=' font-semibold text-lg pb-4 capitalize'>
-                  <Link href={`/${post.post_id}`} target="_self">
+                  <Link href={`/${post.post_id}`} >
                     {post.company_name}
                   </Link>
                 </h3>
