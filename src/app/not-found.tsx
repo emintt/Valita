@@ -5,15 +5,17 @@ export default function NotFound() {
 
   return (
     <>
-      <section className=' flex flex-col min-h-screen relative shadow w-full xs:max-w-md md:max-w-[680px] '>
+      <section className=' flex flex-col items-center justify-center min-h-screen relative w-full bg-white '>
+        <div className="flex flex-col justify-center shadow w-full xs:max-w-md md:max-w-[680px]">
         <Image 
           src={NotFoundImage}
           alt={'not found image'}
-          width={960}
+          width={1280}
           height={960}
-          style={{contain: "cover", width:"100%", height:"auto"}}
+          style={{contain: "cover", width:"auto", height:"100vh"}}
         />
-        <h1 className=" text-lg">Page not found</h1>
+        </div>    
+        <h1 className=" text-xl uppercase font-serif font-semibold">Page not found</h1>
       </section>
     </>
   );

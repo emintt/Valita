@@ -12,9 +12,11 @@
     "cypress": "cypress run",
     "lint": "next lint",
     "format": "prettier --check .",
-    "format:fix": "prettier --write --list-different ."
+    "format:fix": "prettier --write --list-different .",
+    "apidoc": "apidoc -i src/ -o docs/"
   },
   "dependencies": {
+    "apidoc": "^1.2.0",
     "bcrypt": "^5.1.1",
     "cypress": "^13.8.1",
     "jsonwebtoken": "^9.0.2",

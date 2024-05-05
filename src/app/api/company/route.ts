@@ -5,7 +5,8 @@ export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
 
-    // send company name to company model to add and/or take back the company id
+    // send company name to company model to add and to DB 
+    // if it is already exists, take back the company id
     const postCompanyResult = await PostCompany(data.company_name);
     // console.log(postCompanyResult);
 

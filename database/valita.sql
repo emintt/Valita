@@ -76,6 +76,29 @@ VALUES ('K-Kauppa Postitalo'),
   ('Musiikkitalo'), 
   ('UMH Finland');
 
+INSERT INTO companies (company_name) VALUES 
+('S-market Kamppi'),
+('S-market Hakaniemi'),
+('S-market Töölöntori'),
+('S-market Kannelmäki'),
+('S-market Munkkivuori'),
+('S-market Herttoniemi'),
+('S-market Malmi'),
+('S-market Kivikko'),
+('S-market Vallila'),
+('S-market Konala'),
+('K-Supermarket Ruoholahti'),
+('K-Supermarket Redi'),
+('K-Supermarket Sörnäinen'),
+('K-Supermarket Arabia'),
+('K-Supermarket Postitalo'),
+('K-Supermarket Pasila'),
+('K-Supermarket Kaisaniemi'),
+('K-Supermarket Erottaja'),
+('K-Supermarket Kruununhaka'),
+('K-Supermarket Töölö'),
+('Metropolia Karamalmi');
+
 -- INSERT INTO Posts (user_id, company_id, filename, filesize, media_type, title, content) 
 -- VALUES (1, 1, 'sunset.jpg', 1024, 'image/jpeg', 'Testi title', 'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'),
 --   (2, 2, 'sunset.jpg', 1024, 'image/jpeg', 'Testi title', 'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
