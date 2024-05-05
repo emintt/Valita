@@ -16,22 +16,22 @@
 ## Toiminnallisuudet
 
 - Rekisteröityminen
-  ![Register](screenshots/register.png.png)
+  ![Register](screenshots/register.png)
 
 - Kijautuminen
-  ![Login](screenshots/login.png.png)
+  ![Login](screenshots/login.png)
 
 - Kirjautuminen ulos
-  ![SignOut](screenshots/signout.png.png)
+  ![SignOut](screenshots/signout.png)
 
 - Yrityksen hakeminen
-  ![Search](screenshots//search.png.png)
+  ![Search](screenshots//search.png)
 
 - Julkaisun luominen, kuva voi liittää julkaisuun valinnaisesti
   ![CreatePost](screenshots/create.png)
 
 - Julkaisun poistaminen
-  ![DeletePost](screenshots/delete.png.png)
+  ![DeletePost](screenshots/delete.png)
 
 - Julkaisun poistaminen (admin)
   ![AdminDeletePost](screenshots/admin-delete.png)
