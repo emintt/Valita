@@ -13,6 +13,7 @@ export default function NotFound() {
           width={1280}
           height={960}
           style={{contain: "cover", width:"auto", height:"100vh"}}
+          priority={true}
         />
         </div>    
         <h1 className=" text-xl uppercase font-serif font-semibold">Page not found</h1>

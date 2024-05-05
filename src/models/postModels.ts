@@ -1,5 +1,5 @@
 import {promisePool} from '@/lib/db';
-import {Post} from '@/types/DBTypes';
+import {Post, PostWithCompanyName} from '@/types/DBTypes';
 import {ResultSetHeader, RowDataPacket} from 'mysql2';
 
 const fetchAllPost = async (): Promise<Post[] | null> => {
@@ -52,5 +52,38 @@ const postPost = async (
 };
 
 
+const fetchPostWithCompanyNameById = async (id: string) => {
+  try {
+    const sql = `SELECT 
+    Posts.post_id,
+    Posts.user_id,
+    Companies.company_id,
+    Companies.company_name,
+    Posts.filename,
+    Posts.filesize,
+    Posts.media_type,
+    Posts.title,
+    Posts.content,
+    Posts.created_at
+FROM 
+    Posts
+INNER JOIN 
+    Companies ON Posts.company_id = Companies.company_id
+WHERE 
+    Posts.post_id = ?;
+`;
+    const params = [id];
+    const [rows] = await promisePool.execute<RowDataPacket[] & PostWithCompanyName[]>(sql, params);
+    // console.log('row', rows);
+    if (rows.length === 0) {
+      return null;
+    }
+    return rows[0];
+  } catch (e) {
+    console.error('fetchPost error', (e as Error).message);
+    throw new Error((e as Error).message);
+  }
+}
 
-export {fetchAllPost, postPost, };
+
+export {fetchAllPost, postPost, fetchPostWithCompanyNameById};
