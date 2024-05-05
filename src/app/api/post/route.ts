@@ -1,7 +1,7 @@
-import { requireAuth } from '@/lib/authFunctions';
+import { getSession, requireAuth } from '@/lib/authFunctions';
 import { fetchData } from '@/lib/functions';
 import {postPost} from '@/models/postModels';
-import {Post} from '@/types/DBTypes';
+import { Post, TokenContent } from '@/types/DBTypes';
 import { UploadResponse } from '@/types/MessageTypes';
 import { cookies } from 'next/headers';
 import {NextRequest, NextResponse} from 'next/server';
@@ -9,7 +9,12 @@ import {stringify} from 'querystring';
 
 export async function POST(request: NextRequest) {
   requireAuth();
+
   try {
+    const tokenContent = getSession();
+    if (!tokenContent) {
+      return NextResponse.json('Invalid user');
+    }
     // Get the form data from the request
     const formData = await request.formData();
 
@@ -56,7 +61,7 @@ export async function POST(request: NextRequest) {
         },
       );
       
-      console.log('file upload result', uploadResult);
+      // console.log('file upload result', uploadResult);
 
       // If the upload response is valid, add the image to the database
       if (!uploadResult.data) {
@@ -73,7 +78,7 @@ export async function POST(request: NextRequest) {
       filename: uploadResult.data.filename || null,
       filesize: uploadResult.data.filesize || null,
       media_type: uploadResult.data.media_type || null,
-      user_id: 1,
+      user_id: tokenContent.user_id,
     };
 
     // Insert to DB

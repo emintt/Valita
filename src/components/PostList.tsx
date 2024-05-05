@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { AiOutlineLike } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
+import DeleteButton from './DeleteButton';
+import { getSession } from '@/lib/authFunctions';
 
 
 
@@ -24,12 +26,17 @@ const PostList = async () => {
   );
   postListWithCompanyName.reverse();
 
+  const token = getSession();
+  console.log(token);
+
   return (
     <>
       <ul>
         {postListWithCompanyName &&
           postListWithCompanyName.map((post, index) => (
             <li key={index} className="mb-1 bg-white border rounded-lg border-slate-300">
+              {token && ((token.level_name === "Admin") || (token.user_id === post.user_id)) && <DeleteButton postId={post.post_id} />}
+
               <Link href={`/chain/${post.post_id}`} target="_self">
                 <div className=' p-4 sm:pl-8'>
                   <p className=" text-slate-700 text-sm">{' ' + new Date(post.created_at).toLocaleString('fi-FI')}</p>

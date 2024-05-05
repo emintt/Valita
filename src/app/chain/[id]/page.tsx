@@ -8,7 +8,7 @@ import { FaRegComment } from "react-icons/fa";
 export default async function PostPage({ params } : { params: { id: string }}) {
 
   const post = await getPostWithCompanyNameAction(params.id) as PostWithCompanyName;
-  console.log('post from page', post);
+  // console.log('post from page', post);
   return (
     <>
       <section className=' flex flex-col min-h-screen relative w-full xs:max-w-md md:max-w-[680px] '>

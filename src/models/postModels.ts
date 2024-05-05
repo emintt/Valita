@@ -1,6 +1,8 @@
 import {promisePool} from '@/lib/db';
-import {Post, PostWithCompanyName} from '@/types/DBTypes';
+import {Post, PostWithCompanyName, UserLevel} from '@/types/DBTypes';
+import { MessageResponse } from '@/types/MessageTypes';
 import {ResultSetHeader, RowDataPacket} from 'mysql2';
+import { getUserById } from './userModel';
 
 const fetchAllPost = async (): Promise<Post[] | null> => {
   // const uploadPath = process.env.UPLOAD_URL;
@@ -85,5 +87,59 @@ WHERE
   }
 }
 
+const deletePost = async (
+  post_id: number,
+  user_id: number,
+  level_name: string
+): Promise<MessageResponse> => {
+  
+  const connection = await promisePool.getConnection();
 
-export {fetchAllPost, postPost, fetchPostWithCompanyNameById};
+  try {
+    await connection.beginTransaction();
+
+    await connection.execute('DELETE FROM Likes WHERE post_id = ?;', [
+      post_id,
+    ]);
+
+    await connection.execute('DELETE FROM Comments WHERE post_id = ?;', [
+      post_id,
+    ]);
+
+    let sql = '';
+    if (level_name === 'Admin') {
+      sql = connection.format('DELETE FROM Posts WHERE post_id = ?', [
+        post_id,
+      ]);
+    } else {
+      sql = connection.format(
+        'DELETE FROM Posts WHERE post_id = ? AND user_id = ?',
+        [post_id, user_id]
+      );
+    }
+    console.log(sql);
+    // note, user_id in SQL so that only the owner of the pot can delete it
+    const [result] = await connection.execute<ResultSetHeader>(sql);
+
+    if (result.affectedRows === 0) {
+      return {message: 'Post not deleted'};
+    }
+
+    
+    // if no errors commit transaction
+    await connection.commit();
+
+    return {
+      message: 'Post deleted',
+    };
+  } catch (e) {
+    await connection.rollback();
+    console.error('error', (e as Error).message);
+    throw new Error((e as Error).message);
+    } finally {
+    connection.release();
+  }
+};
+
+
+export {fetchAllPost, postPost, fetchPostWithCompanyNameById, deletePost};

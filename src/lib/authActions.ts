@@ -20,7 +20,7 @@ export async function login(formData: FormData) {
         message: 'Virheellinen sähköpostiosoite tai salasana!',
       };
     }
-    console.log('user', user);
+    // console.log('user', user);
   
     // compare password
     const isPasswordCorrect = bcrypt.compareSync(

@@ -97,4 +97,7 @@ const checkEmailExists = async (email: string): Promise<{available: boolean}> =>
   }
 };
 
-export {getUserByEmail, createUser, checkEmailExists};
+
+
+
+export {getUserByEmail, createUser, checkEmailExists, getUserById};

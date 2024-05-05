@@ -105,3 +105,6 @@ INSERT INTO companies (company_name) VALUES
 --   (3, 3, 'sunset.jpg', 1024, 'image/jpeg', 'Jotain title', ' It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum');
 
 
+-- UPDATE Users
+-- SET user_level_id = 1
+-- WHERE user_id = 3;
