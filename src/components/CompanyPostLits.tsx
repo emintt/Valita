@@ -1,5 +1,5 @@
 import { fetchCompanyById } from '@/models/companyModels';
-import { fetchAllPost } from '@/models/postModels';
+import { fetchAllPost, fetchCompanyPosts } from '@/models/postModels';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AiOutlineLike } from "react-icons/ai";
@@ -9,8 +9,8 @@ import { getSession } from '@/lib/authFunctions';
 
 
 
-const PostList = async () => {
-  const postList = await fetchAllPost();
+const CompanyPostList = async (props : {id: number}) => {
+  const postList = await fetchCompanyPosts(props.id);
   if (!postList) {
     return <p>no post found</p>;
   }
@@ -78,4 +78,4 @@ const PostList = async () => {
   );
 };
 
-export default PostList;
+export default CompanyPostList;

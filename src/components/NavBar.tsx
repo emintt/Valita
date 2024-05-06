@@ -16,7 +16,7 @@ const NavBar = () => {
       </div>
       <div className="hidden lg:flex lg:items-center lg:w-auto mr-10">
         <ul className="flex">
-          <li className="mr-4">
+          {/* <li className="mr-4">
             <Link
               href="/"
               className="block lg:inline-block lg:mt-0 text-slate-950 font-semibold p-3 hover:text-purple "
@@ -39,7 +39,7 @@ const NavBar = () => {
             >
               Parhaat
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
       <div className="lg:flex lg:items-center lg:w-auto">

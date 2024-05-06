@@ -141,5 +141,22 @@ const deletePost = async (
   }
 };
 
+const fetchCompanyPosts = async (id: number): Promise<Post[] | null> => {
+  // const uploadPath = process.env.UPLOAD_URL;
+  try {
+    const sql = `SELECT *
+      FROM Posts WHERE company_id = ?`;
+    const params = [id]
+    const [rows] = await promisePool.execute<RowDataPacket[] & Post[]>(sql, params);
 
-export {fetchAllPost, postPost, fetchPostWithCompanyNameById, deletePost};
+    if (rows.length === 0) {
+      return null;
+    }
+    return rows;
+  } catch (e) {
+    console.error('fetchCompanyPosts error', (e as Error).message);
+    throw new Error((e as Error).message);
+  }
+};
+
+export {fetchAllPost, postPost, fetchPostWithCompanyNameById, deletePost, fetchCompanyPosts};
