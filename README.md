@@ -6,7 +6,7 @@
 ## Linkit
 
 - [Sovellukseen ja backend sovellukseen](https://valita.northeurope.cloudapp.azure.com/)
-- [API-dokumentaatioon](https://valita.northeurope.cloudapp.azure.com/docs/index.html)
+- [API-dokumentaatioon](https://users.metropolia.fi/~thitng/valita-apidoc/)
 - [Linkki rautalankamallit](https://docs.google.com/presentation/d/1ps3TVF6uQFPZSPEZ2DkFmDPp83atvbCk2V0HHiftKt8/edit#slide=id.p)
 
 ## Tietokannan kuvaus
