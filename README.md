@@ -1,19 +1,36 @@
-## Sovelluksen käyttöliittymä
-
-![Home page](screenshots/home.png)
-![Detail page](screenshots/single.png)
-
 ## Linkit
 
 - [Sovellukseen ja backend sovellukseen](https://valita.northeurope.cloudapp.azure.com/)
 - [API-dokumentaatioon](https://users.metropolia.fi/~thitng/valita-apidoc/)
-- [Linkki rautalankamallit](https://docs.google.com/presentation/d/1ps3TVF6uQFPZSPEZ2DkFmDPp83atvbCk2V0HHiftKt8/edit#slide=id.p)
+
+## Linkki ohjelmistotestauskansioon
+
+[Unit test](https://github.com/emintt/Valita/blob/main/__tests__/Create.test.tsx)
+[End-to-end test](https://github.com/emintt/Valita/tree/main/cypress/e2e)
+
+## CI/CD putki
+
+[Linkki](https://github.com/emintt/Valita/tree/main/.github/workflows)
+![CD](screenshots/cd.png)
 
 ## Tietokannan kuvaus
 
 ![Tietokannan kuvaus](database/valita-db.png)
 
+## Sovelluksen käyttöliittymä
+
+![Home page](screenshots/home.png)
+![Detail page](screenshots/single.png)
+
 ## Toiminnallisuudet
+- Rekisteröityminen
+- Kijautuminen
+- Kirjautuminen ulos
+- Yrityksen hakeminen
+- Julkaisun luominen, kuva voi liittää julkaisuun valinnaisesti
+- Julkaisun poistaminen
+- Julkaisun poistaminen (admin)
+
 
 - Rekisteröityminen
   ![Register](screenshots/register.png)
@@ -35,16 +52,6 @@
 
 - Julkaisun poistaminen (admin)
   ![AdminDeletePost](screenshots/admin-delete.png)
-
-## Linkki ohjelmistotestauskansioon
-
-[Unit test](https://github.com/emintt/Valita/blob/main/__tests__/Create.test.tsx)
-[End-to-end test](https://github.com/emintt/Valita/tree/main/cypress/e2e)
-
-## CI/CD putki
-
-[Linkki](https://github.com/emintt/Valita/tree/main/.github/workflows)
-![CD](screenshots/cd.png)
 
 ## Referenssit
 
