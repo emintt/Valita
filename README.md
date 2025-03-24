@@ -1,4 +1,13 @@
 Anonymous feedback platform. This is a school project. The aim is to create a safe environment where employees can anonymously express their thoughts and concerns about their workplace well-being.
+
+## Toiminnallisuudet
+- Rekisteröityminen
+- Kijautuminen
+- Kirjautuminen ulos
+- Yrityksen hakeminen
+- Julkaisun luominen, kuva voi liittää julkaisuun valinnaisesti
+- Julkaisun poistaminen
+- Julkaisun poistaminen (admin)
 ## Linkit
 
 
@@ -23,14 +32,6 @@ Anonymous feedback platform. This is a school project. The aim is to create a sa
 ![Home page](screenshots/home.png)
 ![Detail page](screenshots/single.png)
 
-## Toiminnallisuudet
-- Rekisteröityminen
-- Kijautuminen
-- Kirjautuminen ulos
-- Yrityksen hakeminen
-- Julkaisun luominen, kuva voi liittää julkaisuun valinnaisesti
-- Julkaisun poistaminen
-- Julkaisun poistaminen (admin)
 
 
 - Rekisteröityminen
